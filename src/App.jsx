@@ -5,7 +5,9 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Results from "./pages/Results";
 import Event from "./components/Event";
-
+import Navbar from "./components/Navbar";
+import Searchbar from "./components/Searchbar";
+import Eventcard from "./components/Eventcard";
 function App() {
   return (
     <>
