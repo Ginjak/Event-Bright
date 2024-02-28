@@ -1,48 +1,47 @@
 import "./header.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 
 function Header({ children }) {
-  const [events, setEvents] = useState([]);
-
   useEffect(() => {
-    // Function to fetch events from Ticketmaster API
     const fetchEvents = async () => {
-      const API_KEY = "HjQcNIEkdwsQswwBQhfE1PO0smAoxyu4"; // Replace with your Ticketmaster API key
+      const API_KEY = "HjQcNIEkdwsQswwBQhfE1PO0smAoxyu4";
       const apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json";
-      const params = {
-        apikey: API_KEY,
-        keyword: "concert", // Example: searching for concerts
-        // city: "London", // Example: searching in New York
-      };
 
       try {
-        const response = await axios.get(apiUrl, { params });
-        setEvents(response.data._embedded.events);
+        const response = await axios.get(apiUrl, {
+          params: {
+            apikey: API_KEY,
+            keyword: "", // Can be band genre
+            city: "London",
+            startDateTime: "2023-09-01T00:00:00Z",
+            endDateTime: "2025-09-30T23:59:59Z",
+            size: 10,
+          },
+        });
+        console.log("Events:", response.data);
       } catch (error) {
-        console.error("Error fetching events:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchEvents(); // Call the function to fetch events when component mounts
-  }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
+    fetchEvents();
+  }, []);
 
   return (
-    <>
-      <header className="header">
-        <h1>Events</h1>
-        <ul>
-          {events.map((event) => (
-            <li key={event.id}>
-              {/* Render event name and city */}
-              {event.name} - {event._embedded.venues[0].city.name}
-            </li>
-          ))}
-        </ul>
-        {children}
-      </header>
-    </>
+    <div>
+      <h1>Events</h1>
+      {children}
+    </div>
   );
 }
 
 export default Header;
+
+/*
+Search can be done by
+Date from and till
+By artist
+City
+asdadasdasd
+*/
