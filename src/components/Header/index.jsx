@@ -3,7 +3,7 @@ import axios from "axios";
 import Navbar from "../Navbar";
 
 function Header({ children }) {
-  return <></>;
+  return <>{children}</>;
 }
 
 export default Header;
