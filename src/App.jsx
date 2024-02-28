@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,12 +14,12 @@ function App() {
         <Header>
           <Navbar />
         </Header>
-        <Routes>
-          <Route path="/results" element={<Results />} />
-          <Route path="/event" element={<Event />} />
-          {/* <Route path="/contact" element={<Contact />} /> */}
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <Route>
+          {/* <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} /> */}
+        </Route>
       </Router>
       <Footer />
     </>
