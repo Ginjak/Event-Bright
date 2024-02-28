@@ -2,12 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Results from "./pages/Results";
 import Event from "./components/Event";
-import Searchbar from "./components/Searchbar";
-import Eventcard from "./components/Eventcard";
 
 function App() {
   return (
