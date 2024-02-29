@@ -8,6 +8,7 @@ import Event from "./components/Event";
 import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Eventcard from "./components/Eventcard";
+import Upcomingevents from "./components/Upcomingevents";
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
           <Route path="*" element={<Home />} />
         </Routes>
       </Router>
+      <Upcomingevents />
       <Footer />
     </>
   );
