@@ -1,12 +1,6 @@
 import "./upcomingevents.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 const Upcomingevents = () => {
   const [events, setEvents] = useState([]);
@@ -61,64 +55,74 @@ const Upcomingevents = () => {
 
   return (
     <>
-      {arrWithUniqueEvents.length > 0 ? (
-        <div className="upcoming-events-wraper row row-cols-1 row-cols-md-2 g-4">
-          {arrWithUniqueEvents.slice(0, 8).map((event, index) => (
-            <div className="col" key={event.id}>
-              <div className="card bg-dark text-white">
-                <img
-                  src={smallImage(event.images)}
-                  className="card-img"
-                  alt={event.name}
-                />
-                <div className="card-img-overlay">
-                  <h5 className="card-title">{event.name}</h5>
-                  {event.dates && (
-                    <p className="card-text">{event.dates.start.localDate}</p>
-                  )}
-                  {event.dates && (
-                    <p className="card-text">{event.dates.start.localTime}</p>
-                  )}
+      <div className="upcoming-events">
+        {arrWithUniqueEvents.length > 0 ? (
+          <div className="upcoming-events-wraper row row-cols-1 row-cols-md-2 g-4">
+            {arrWithUniqueEvents.slice(0, 8).map((event, index) => (
+              <div className="col" key={event.id}>
+                <div className="card bg-dark text-white h-100 position-relative">
+                  <img
+                    src={smallImage(event.images)}
+                    className="card-img h-100"
+                    alt={event.name}
+                  />
+                  <div className="card-img-overlay d-flex flex-column justify-content-between">
+                    <h5 className="card-title text-center h-100 d-flex flex-column justify-content-center">
+                      {event.name}
+                    </h5>
+                    <div className="info-wraper d-flex justify-content-between">
+                      <div className="genre-location-wraper">
+                        {event.classifications &&
+                          event.classifications[0].subGenre.name !==
+                            "Undefined" && (
+                            <p className="card-text m-0">
+                              {event.classifications[0].subGenre.name}
+                            </p>
+                          )}
+                        {event._embedded.venues && (
+                          <p className="card-text m-0">
+                            {event._embedded.venues[0].city.name}
+                          </p>
+                        )}
+                      </div>
+                      <div className="date-price-wraper">
+                        {event.dates && (
+                          <p className="card-text m-0">
+                            {event.dates.start.localDate}
+                          </p>
+                        )}
+                        {event.priceRanges &&
+                          event.priceRanges[0].min !== 0 && (
+                            <div className=" d-flex">
+                              <p className="card-text m-0 me-2">
+                                {event.priceRanges[1].min}
+                              </p>
+                              <p className="card-text m-0">
+                                {event.priceRanges[1].currency}
+                              </p>
+                            </div>
+                          )}
+                      </div>
+                    </div>
+                    {event.url && (
+                      <a
+                        href={event.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary card-btn"
+                      >
+                        Get tickets!
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            // <Card key={event.id} sx={{ maxWidth: 405 }}>
-            //   <CardMedia
-            //     sx={{ height: 140 }}
-            //     image={smallImage(event.images)}
-            //     title={event.name}
-            //   />
-            //   <CardContent>
-            //     <Typography gutterBottom variant="h5" component="div">
-            //       {event.name}
-            //     </Typography>
-            //     <Typography variant="body2" color="text.secondary">
-            //       Test
-            //     </Typography>
-            //   </CardContent>
-            // </Card>
-          ))}
-        </div>
-      ) : (
-        <div>No upcoming events</div>
-      )}
-
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          sx={{ height: 140 }}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Test
-          </Typography>
-        </CardContent>
-      </Card>
+            ))}
+          </div>
+        ) : (
+          <div>No upcoming events</div>
+        )}
+      </div>
     </>
   );
 };
