@@ -16,16 +16,49 @@ function Eventcard({ eventData, searchExecuted }) {
   // Accessing the events array from _embedded
   const events =
     eventData && eventData._embedded ? eventData._embedded.events : [];
-
+  console.log(events);
   return (
     <div>
       {/* Mapping through the events array to generate cards for each event */}
       {events.map((event, index) => (
         <div key={index} className="event-card">
+          <p>Name: {event.name}</p>
+          <p>Show date: {event.dates.start.localDate}</p>
+          <p>Show time: {event.dates.start.localTime}</p>
+          <p>Genre: {event.classifications[0].genre.name}</p>
+          <p>Genre: {event.classifications[0].segment.name}</p>
+          <p>Sales start date: {event.sales.public.startDateTime}</p>
+          <p>Sales end date: {event.sales.public.endDateTime}</p>
+          <p>Link to purchase tickets: {event.url}</p>
+          <p>Venue name: {event._embedded.venues[0].name}</p>
+          <p>Venue City: {event._embedded.venues[0].city.name}</p>
           <p>
-            Event {index + 1}: {event.name}
+            Venue Address (Street name):{" "}
+            {event._embedded.venues[0].address.line1}
           </p>
-          {/* Add more details as needed */}
+          <p>
+            Venue Address (Postcode): {event._embedded.venues[0].postalCode}
+          </p>
+          {/* <p>Price range (from): {event.priceRanges[1].min}</p>
+          <p>Price range (to): {event.priceRanges[1].max}</p>
+          <p>Price currency: {event.priceRanges[1].currency}</p> */}
+
+          <p>
+            Legal age:{" "}
+            {event.ageRestrictions.legalAgeEnforced ? (
+              <img
+                src="../../public/eventBright-logo.png"
+                alt="Only for adults"
+              />
+            ) : (
+              <img
+                className="age-restriction"
+                src="./eventBright-logo.png"
+                alt="OK for kids"
+              />
+            )}
+          </p>
+          <img src={event.images[0].url} alt="" />
         </div>
       ))}
     </div>
