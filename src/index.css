@@ -1,0 +1,12 @@
+#message {
+  width: 30% !important;
+  height: 25vh;
+}
+
+.formButton {
+  border-radius: 30px;
+  background-color: rgb(255, 0, 0);
+  color: white;
+  padding: 6px 14px 6px 14px;
+  border: none;
+}
