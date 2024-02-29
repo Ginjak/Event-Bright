@@ -70,7 +70,6 @@ const Hero = () => {
                 </select>
               </div>
 
-
               {/* <div class="input-group date" data-provide="datepicker">
                 <input type="date" class="form-control" />
                 <div class="input-group-addon">
