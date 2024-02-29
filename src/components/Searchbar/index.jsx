@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Eventcard from "../Eventcard";
 
-function Searchbar({ children }) {
+function Searchbar() {
   const [keyword, setKeyword] = useState("");
   const [city, setCity] = useState("");
   const [startDateTime, setStartDateTime] = useState("");
@@ -89,7 +89,6 @@ function Searchbar({ children }) {
       </div>
       <button onClick={handleSearch}>Search</button>
       <Eventcard eventData={events} searchExecuted={searchExecuted} />
-      {children}
     </>
   );
 }

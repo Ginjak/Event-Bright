@@ -17,6 +17,7 @@ function App() {
         </Header>
         <Searchbar />
         <Eventcard />
+        <Event />
         <Routes>
           <Route path="/results" element={<Results />} />
           <Route path="/event" element={<Event />} />
