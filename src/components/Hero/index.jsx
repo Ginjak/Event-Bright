@@ -1,9 +1,12 @@
 import "./hero.css";
-import React from "react";
-
-// import DatePicker from "react-bootstrap-date-picker";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Hero = () => {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
   return (
     <>
       <div className="jumbotron jumbotron-fluid py-5 ps-0">
@@ -40,27 +43,27 @@ const Hero = () => {
                 <label htmlFor="inputStartDate" className="form-label">
                   Start Date
                 </label>
-                <select
-                  id="inputStartDate"
-                  className="form-select"
-                  defaultValue=""
-                >
-                  <option>Select a start date...</option>
-                  {/* Add options here */}
-                </select>
+                <div>
+                  <DatePicker
+                    id="inputStartDate"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    className="form-control"
+                  />
+                </div>
               </div>
               <div className="col-md-4">
                 <label htmlFor="inputEndDate" className="form-label">
                   End Date
                 </label>
-                <select
-                  id="inputEndDate"
-                  className="form-select"
-                  defaultValue=""
-                >
-                  <option>Select an end date...</option>
-                  {/* Add options here */}
-                </select>
+                <div>
+                  <DatePicker
+                    id="inputEndDate"
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                    className="form-control"
+                  />
+                </div>
               </div>
               <div className="col-md-4">
                 <label htmlFor="inputResultsNum" className="form-label">
