@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const Weather = () => {
   const [city, setCity] = useState(""); // State to store the city name input
@@ -17,6 +22,7 @@ const Weather = () => {
       );
       // Set the weather data in the state
       setWeatherData(response.data);
+      console.log("Object: ", response.data);
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
@@ -34,6 +40,7 @@ const Weather = () => {
       const cityResponse = await axios.get(
         `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${geoCodingAPI}`
       );
+
       // extracting latitude and longitude from the response
       const { lat, lng } = cityResponse.data.results[0].geometry;
       // Fetch weather data using latitude and longitude
@@ -44,27 +51,45 @@ const Weather = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter city name"
-          value={city}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Get Weather</button>
-      </form>
-      {weatherData && (
-        <div>
-          <h2>Weather in {city}</h2>
-
-          <p>Temperature: {weatherData.main.temp} °C</p>
-          <p>Feels like: {weatherData.main.feels_like} °C</p>
-          <p>Humidity: {weatherData.main.humidity} %</p>
-          <p>Wind Speed: {weatherData.wind.speed} m/s</p>
-        </div>
-      )}
-    </div>
+    <Card>
+      <CardContent>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Enter city name"
+            variant="outlined"
+            value={city}
+            onChange={handleInputChange}
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Get Weather
+          </Button>
+        </form>
+        {weatherData && (
+          <Card
+            variant="outlined"
+            style={{ width: "fit-content", marginTop: 20 }}
+          >
+            <CardContent>
+              <Typography variant="h6" gutterBottom>
+                Weather in {city}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Temperature: {weatherData.main.temp} °C
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Feels like: {weatherData.main.feels_like} °C
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Humidity: {weatherData.main.humidity} %
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Wind Speed: {weatherData.wind.speed} m/s
+              </Typography>
+            </CardContent>
+          </Card>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 
