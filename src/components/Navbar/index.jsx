@@ -15,7 +15,7 @@ const Navbar = () => {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <div class="navbar-nav ms-auto">
         <a class="nav-link active" aria-current="page" href="#">About</a>
         <a class="nav-link" href="#">Contact</a>
         <a class="nav-link" href="#">Weather</a>
