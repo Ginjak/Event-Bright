@@ -5,9 +5,11 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Results from "./pages/Results";
 import Event from "./components/Event";
+import Contactform from "./components/Contactform";
 import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Eventcard from "./components/Eventcard";
+import About from "./components/About";
 function App() {
   return (
     <>
@@ -18,6 +20,8 @@ function App() {
         <Searchbar />
         <Eventcard />
         <Event />
+        <About />
+        <Contactform />
         <Routes>
           <Route path="/results" element={<Results />} />
           <Route path="/event" element={<Event />} />
