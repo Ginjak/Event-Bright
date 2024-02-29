@@ -1,7 +1,7 @@
 import "./header.css";
 import React, { useEffect } from "react";
 import axios from "axios";
-import Navbar from "../Navbar";
+// import Navbar from "../Navbar";
 
 function Header({ children }) {
   useEffect(() => {
