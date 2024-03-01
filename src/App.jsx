@@ -7,7 +7,7 @@ import Results from "./pages/Results";
 import Event from "./components/Event";
 import Contactform from "./components/Contactform";
 import Navbar from "./components/Navbar";
-import Searchbar from "./components/Searchbar";
+// import Searchbar from "./components/Searchbar";
 import Eventcard from "./components/Eventcard";
 import Upcomingevents from "./components/Upcomingevents";
 import About from "./components/About";
@@ -21,7 +21,7 @@ function App() {
           <Navbar />
         </Header>
         <Hero />
-        <Searchbar />
+        {/* <Searchbar /> */}
         <Eventcard />
         <Event />
         <About />
