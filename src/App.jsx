@@ -22,8 +22,8 @@ function App() {
         </Header>
         <Hero />
         {/* <Searchbar /> */}
-        <Eventcard />
-        <Event />
+        {/* <Eventcard /> */}
+
         <About />
         <Contactform />
         <Routes>

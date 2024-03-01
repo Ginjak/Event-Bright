@@ -1,7 +1,7 @@
 import "./hero.css";
 import React, { useState } from "react";
 import axios from "axios";
-import Eventcard from "../Eventcard";
+import Event from "../Event";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -159,7 +159,9 @@ function Hero() {
                 >
                   Search
                 </button>
-                <Eventcard eventData={events} searchExecuted={searchExecuted} />
+                {searchExecuted && events && (
+                  <Event eventData={events} searchExecuted={searchExecuted} />
+                )}
               </div>
             </div>
           </div>
