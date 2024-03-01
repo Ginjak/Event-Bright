@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./eventcard.css";
 import currencyFormatter from "currency-formatter";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -12,10 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function Eventcard({ eventData, searchExecuted }) {
   const [expandedId, setExpandedId] = useState(null); // State to track the currently expanded card's ID
@@ -112,12 +108,12 @@ function Eventcard({ eventData, searchExecuted }) {
                 <div className="venue-dates-wraper d-flex flex-column flex-md-row justify-content-between">
                   <div className="city-venue-wraper d-flex">
                     {event._embedded.venues[0].city.name && (
-                      <p class="venue-city mb-0 fw-bolder me-2">
+                      <p className="venue-city mb-0 fw-bolder me-2">
                         {event._embedded.venues[0].city.name}
                       </p>
                     )}
                     {event._embedded.venues[0].name && (
-                      <p class="venue-name mb-0 fw-bolder ">
+                      <p className="venue-name mb-0 fw-bolder ">
                         {event._embedded.venues[0].name}
                       </p>
                     )}
@@ -285,7 +281,7 @@ function Eventcard({ eventData, searchExecuted }) {
                 {event.pleaseNote && (
                   <>
                     <span className="event-note-text">
-                      <i class="fa-solid fa-circle-exclamation me-2"></i>
+                      <i className="fa-solid fa-circle-exclamation me-2"></i>
                       {event.pleaseNote}
                     </span>
                   </>
