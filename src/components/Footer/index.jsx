@@ -1,8 +1,8 @@
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import "./footer.css";
 import React from "react";
+import "./footer.css";
 
 const Footer = () => {
 
@@ -16,25 +16,36 @@ const Footer = () => {
             <span>EvenBright</span>
           </a>
         </div>
-        {/* social medias >> */}
-        <div className="container-fluid">
-          <h3 className="fs-6 margins">Future links: </h3>
-          <div className="socials">
-            <a href="#" className="display-inline">
-              <img alt="" title="Instagram" src="" className=""/>
-              <InstagramIcon fontSize='large'/>
-            </a>
-            <a href="#" className="display-inline">
-              <img alt="" title="Facebook" src=""/>
-              <FacebookIcon fontSize='large'/>
-            </a>
-            <a href="#" className="display-inline">
-              <img alt="" title="YouTube" src="" className=""/>
-              <YouTubeIcon fontSize='large'/>
-            </a>
-          </div>
-        </div>
       </nav>
+      {/* social medias >> */}
+      <div className="socials-container">
+        <h3 className="fs-6 margins">Future links </h3>
+        <div className="socials-list display-inline">
+          <a href="#" className="display-inline">
+            <InstagramIcon fontSize='large' className='link'/>
+          </a>
+          <a href="#" className="display-inline">
+            <FacebookIcon fontSize='large' className='link'/>
+          </a>
+          <a href="#" className="display-inline">
+            <YouTubeIcon fontSize='large' className='link'/>
+          </a>
+        </div>
+      </div>
+      <div className="pages-container">
+        <div className="page-links display-inline">
+          <span className="margins">Explore: </span>
+          <a href="#" className="link">
+            About
+          </a>
+          <a href="#" className="link">
+            Contact
+          </a>
+          <a href="#" className="link">
+            Weather
+          </a>
+        </div>
+      </div>
     </div>
     </> 
 )
