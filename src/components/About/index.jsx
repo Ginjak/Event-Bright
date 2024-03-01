@@ -1,8 +1,10 @@
 import React from "react";
+import HeroMini from "../HeroMini";
 
 const About = () => {
   return (
     <>
+    < HeroMini />
       <h2>About Us</h2>
       <br />
       <p>
