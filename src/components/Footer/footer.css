@@ -1,22 +1,20 @@
 :root {
   --primary-color: #9BB8CD;
-  --secondary-color: #ede8d2;
+  --secondary-color: #fff9fd;
   --third-color: #EEC759;
-  --link-hover: #ecf1e1c8;
-  --back-drop: #ffffffc8;
+  --link-hover: #fffcfcc8;
   --dark: #17283d;
   --side-margins: 2%;
 }
 
 /* over riding bootstrap class styling */
-.bg-body-tertiary {
-  background-color: var(--secondary-color) !important;
-  height: 200px;
+/* targetted the footer class otherwise changes to the actual navbar would occur */
+.footer .bg-body-tertiary {
+  background-image: url(/public/background-final-project-coding-v2\ -\ Copy.png) !important;
 }
 
-/* targetted the footer class otherwise changes to the actual navbar would occur */
 .footer .navbar {
-  border: var(--dark) solid 10px;
+  border: var(--dark) solid 5px;
 }
 
 /* main effects */
@@ -24,16 +22,13 @@
   background-color: var(--secondary-color);
 }
 
-.footer .background-effect {
-  background-color: var(--back-drop) !important;
+nav {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .margins {
   margin-left: var(--side-margins);
-}
-
-.display-inline {
-  display: inline-block;
 }
 
 .page-links h6 {
@@ -46,7 +41,15 @@
   display: flex;
   align-items: center;
   padding: 2%;
-  border: var(--dark) solid 10px;
+}
+
+.date-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1%;
+  border: var(--dark) solid 5px;
+  border-top: hidden;
 }
 
 .socials-list {
