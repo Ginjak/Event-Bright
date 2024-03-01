@@ -72,7 +72,7 @@ function Hero() {
 
   return (
     <>
-      <div className="jumbotron jumbotron-fluid py-5 ps-0">
+      <div id="jumbotron" className="jumbotron jumbotron-fluid py-5 ps-0">
         <div id="background-overlay" className="container-fluid ms-0">
           <div className="container-fluid">
             <h1 className="display-4 text-white">EventBright</h1>
@@ -88,7 +88,7 @@ function Hero() {
                   type="text"
                   className="form-control"
                   id="keyword"
-                  placeholder="Search for a band, city or venue"
+                  placeholder="Search for a band, event name or venue"
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
                 />

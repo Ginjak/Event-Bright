@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Weather from "../Weather";
 
 function Event({ eventData, searchExecuted }) {
   const [expandedId, setExpandedId] = useState(null); // State to track the currently expanded card's ID
@@ -287,6 +288,7 @@ function Event({ eventData, searchExecuted }) {
                   </>
                 )}
               </Typography>
+              <Weather city={event._embedded.venues[0].city.name} />
             </CardContent>
           </Collapse>
         </Card>

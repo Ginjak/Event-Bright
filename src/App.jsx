@@ -24,8 +24,9 @@ function App() {
         {/* <Searchbar /> */}
         {/* <Eventcard /> */}
 
-        <About />
-        <Contactform />
+        <Upcomingevents />
+        {/* <About /> */}
+        {/* <Contactform /> */}
         <Routes>
           <Route path="/results" element={<Results />} />
           <Route path="/event" element={<Event />} />
@@ -33,7 +34,7 @@ function App() {
           <Route path="*" element={<Home />} />
         </Routes>
       </Router>
-      <Upcomingevents />
+
       <Footer />
     </>
   );
