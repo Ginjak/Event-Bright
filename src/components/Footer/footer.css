@@ -1,4 +1,89 @@
+:root {
+  --primary-color: #9BB8CD;
+  --secondary-color: #ede8d2;
+  --third-color: #EEC759;
+  --link-hover: #ecf1e1c8;
+  --back-drop: #ffffffc8;
+  --dark: #17283d;
+  --side-margins: 2%;
+}
+
+/* over riding bootstrap class styling */
+.bg-body-tertiary {
+  background-color: var(--secondary-color) !important;
+  height: 200px;
+}
+
+/* targetted the footer class otherwise changes to the actual navbar would occur */
+.footer .navbar {
+  border: var(--dark) solid 10px;
+}
+
+/* main effects */
 .footer {
-  background: red !important;
-  height: 60px;
+  background-color: var(--secondary-color);
+}
+
+.footer .background-effect {
+  background-color: var(--back-drop) !important;
+}
+
+.margins {
+  margin-left: var(--side-margins);
+}
+
+.display-inline {
+  display: inline-block;
+}
+
+.page-links h6 {
+  display: inline-block;
+}
+
+/* containers */
+.socials-container,
+.pages-container {
+  display: flex;
+  align-items: center;
+  padding: 2%;
+  border: var(--dark) solid 10px;
+}
+
+.socials-list {
+  margin: var(--side-margins);
+}
+
+.pages-links {
+  justify-content: space-around;
+}
+
+/* logo & title */
+.logo {
+  color: var(--dark) !important;
+  margin-left: var(--side-margins) !important;
+}
+
+.logo span {
+  margin-left: 10%;
+}
+
+/* links */
+a {
+  text-decoration: none;
+  color: var(--dark);
+}
+
+.link:hover {
+  background-color: var(--link-hover) !important;
+  border-radius: 10%;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* media queries */
+@media screen and (max-width: 376px) {
+  .socials-container,
+  .pages-container {
+    align-items: center;
+    justify-content: center;
+  }
 }
