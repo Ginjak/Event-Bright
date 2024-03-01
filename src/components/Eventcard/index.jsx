@@ -199,11 +199,12 @@ function Eventcard({ eventData, searchExecuted }) {
                               {event.classifications[0].genre.name}
                             </p>
                           )}
-                        {event.classifications[0].segment.name && (
-                          <p className="show-segment mb-0 btn-event me-2">
-                            {event.classifications[0].segment.name}
-                          </p>
-                        )}
+                        {event.classifications &&
+                          event.classifications.length > 0 && (
+                            <p className="show-segment mb-0 btn-event me-2">
+                              {event.classifications[0].segment.name}
+                            </p>
+                          )}
                         {event.ageRestrictions && (
                           <div className="m-0 p-0">
                             {event.ageRestrictions.legalAgeEnforced ? (

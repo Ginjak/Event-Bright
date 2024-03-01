@@ -6,10 +6,33 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Searchbar() {
+  const formatDateForAPIStart = (date) => {
+    // Convert date to isoString
+    const isoString = new Date(date).toISOString();
+    // Return date with correct format for ticketmaster API
+    return isoString.slice(0, -5) + "Z";
+  };
+
+  const formatDateForAPIEnd = (date) => {
+    // Create a new Date object
+    const endDate = new Date(date);
+    // Add one day to the date
+    endDate.setDate(endDate.getDate() + 1);
+    // Convert adjusted date to ISO 8601 format
+    const adjustedEndDate = endDate.toISOString();
+    // Return date with correct format for ticketmaster API
+    return adjustedEndDate.slice(0, -5) + "Z";
+  };
+
+  const todaysDate = new Date();
   const [keyword, setKeyword] = useState("");
   const [city, setCity] = useState("");
-  const [startDateTime, setStartDateTime] = useState("");
-  const [endDateTime, setEndDateTime] = useState("");
+  const [startDateTime, setStartDateTime] = useState(
+    formatDateForAPIStart(todaysDate)
+  );
+  const [endDateTime, setEndDateTime] = useState(
+    formatDateForAPIEnd(todaysDate)
+  );
   const [numResults, setNumResults] = useState(5);
   const [events, setEvents] = useState(null);
   const [searchExecuted, setSearchExecuted] = useState(false); // Initialize searchExecuted state
@@ -36,24 +59,6 @@ function Searchbar() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
-
-  const formatDateForAPIStart = (date) => {
-    // Convert date to isoString
-    const isoString = new Date(date).toISOString();
-    // Return date with correct format for ticketmaster API
-    return isoString.slice(0, -5) + "Z";
-  };
-
-  const formatDateForAPIEnd = (date) => {
-    // Create a new Date object
-    const endDate = new Date(date);
-    // Add one day to the date
-    endDate.setDate(endDate.getDate() + 1);
-    // Convert adjusted date to ISO 8601 format
-    const adjustedEndDate = endDate.toISOString();
-    // Return date with correct format for ticketmaster API
-    return adjustedEndDate.slice(0, -5) + "Z";
   };
 
   const handleSearch = () => {
