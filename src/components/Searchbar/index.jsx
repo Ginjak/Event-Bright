@@ -31,6 +31,7 @@ function Searchbar() {
       });
 
       setEvents(response.data);
+      console.log(response.data);
       setSearchExecuted(true); // Set searchExecuted to true after search button is clicked
     } catch (error) {
       console.error("Error fetching data:", error);

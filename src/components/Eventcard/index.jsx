@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./eventcard.css";
+import currencyFormatter from "currency-formatter";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -19,6 +20,15 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 function Eventcard({ eventData, searchExecuted }) {
   const [expandedId, setExpandedId] = useState(null); // State to track the currently expanded card's ID
 
+  // Adding currency symbol
+  function currencyDisplay(amount, currencyCode) {
+    const formattedAmount = currencyFormatter.format(amount, {
+      code: currencyCode,
+    });
+
+    return formattedAmount;
+  }
+
   const handleExpandClick = (id) => {
     setExpandedId(expandedId === id ? null : id); // Toggle expanded state
   };
@@ -30,7 +40,18 @@ function Eventcard({ eventData, searchExecuted }) {
       !eventData._embedded.events ||
       eventData._embedded.events.length === 0)
   ) {
-    return <div className="test">No events available</div>;
+    return (
+      <>
+        {" "}
+        <div className="container-xxl">
+          <div className="no-events d-flex justify-content-center align-items-center">
+            <p>Sorry... there are no events available</p>
+          </div>
+          ;
+        </div>
+        ;
+      </>
+    );
   }
 
   const events =
@@ -52,7 +73,7 @@ function Eventcard({ eventData, searchExecuted }) {
   return (
     <div className="container-xxl">
       {events.map((event, index) => (
-        <Card key={index} sx={{ maxWidth: "100%" }}>
+        <Card key={index} sx={{ maxWidth: "100%", margin: "30px 0px" }}>
           <CardHeader
             avatar={
               <Avatar
@@ -132,8 +153,7 @@ function Eventcard({ eventData, searchExecuted }) {
           >
             <IconButton
               aria-label="show more"
-              onClick={() => handleExpandClick(index)} // Pass index as ID
-              // Add conditional style to rotate icon when expanded
+              onClick={() => handleExpandClick(index)}
               sx={{
                 transform: expandedId === index ? "rotate(180deg)" : "none",
               }}
@@ -141,52 +161,135 @@ function Eventcard({ eventData, searchExecuted }) {
               <ExpandMoreIcon />
             </IconButton>
           </CardActions>
-          <Collapse
-            in={expandedId === index} // Check if the current card's ID matches the expanded ID
-            timeout="auto"
-            unmountOnExit
-          >
+          <Collapse in={expandedId === index} timeout="auto" unmountOnExit>
             <CardContent>
               <div className="row">
                 <div className="col-4">
                   <CardMedia
                     component="img"
                     height="194"
-                    image="/card-img.jpg"
-                    alt="Paella dish"
+                    image={largeImage(event.images)}
+                    alt={event.name}
                   />
                 </div>
-                <div className="col-8">
-                  <div className="bio-venue-wraper d-flex justify-content-between">
-                    <div className="show-bio-wraper">
-                      <p>Show date</p>
-                      <p>Show time</p>
-                      <p>Genre</p>
-                      <p>Type</p>
-                      <p>Legal for kids</p>
+                <div className="col-8 d-flex flex-column justify-content-between">
+                  <div className="bio-venue-wraper d-flex justify-content-between h-100 pb-3">
+                    <div className="show-bio-wraper d-flex flex-column justify-content-between">
+                      <div className="show-date-time d-flex">
+                        {event.dates.start.localDate && (
+                          <p className="show-date mb-0 me-3">
+                            {" "}
+                            {event.dates.start.localDate}
+                          </p>
+                        )}
+                        {event.dates.start.localTime && (
+                          <p className="show-time mb-0">
+                            {event.dates.start.localTime
+                              .split(":")
+                              .slice(0, 2)
+                              .join(":")}
+                          </p>
+                        )}
+                      </div>
+                      <div className="event-type d-flex">
+                        {event.classifications &&
+                          event.classifications[0].genre.name !==
+                            "Undefined" && (
+                            <p className="show-genre mb-0 btn-event me-2">
+                              {event.classifications[0].genre.name}
+                            </p>
+                          )}
+                        {event.classifications[0].segment.name && (
+                          <p className="show-segment mb-0 btn-event me-2">
+                            {event.classifications[0].segment.name}
+                          </p>
+                        )}
+                        {event.ageRestrictions && (
+                          <div className="m-0 p-0">
+                            {event.ageRestrictions.legalAgeEnforced ? (
+                              <p className="btn-event adults m-0">+18</p>
+                            ) : (
+                              <p className="btn-event kids m-0">All ages</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                     <div className="venue-details-wraper">
-                      <p>Venue name</p>
-                      <p>Venue city</p>
-                      <p>Venue Address-1</p>
-                      <p>Venue Address-2</p>
-                      <p>Venue Postcode</p>
+                      {event._embedded.venues[0].name && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].name}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].address && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].address.line1}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].address.line2 && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].address.line2}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].postalCode && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].postalCode}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].city.name && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].city.name}
+                        </p>
+                      )}
                     </div>
                   </div>
-                  <div className="price-purchase-wraper d-flex justify-content-between">
-                    <div className="price-wraper d-flex">
-                      <p>Price from</p>
-                      <p>Price till</p>
-                      <p>Price currency</p>
+                  <div className="price-purchase-wraper d-flex justify-content-end">
+                    <div className="price-wraper d-flex me-4">
+                      {event.priceRanges && event.priceRanges > 0 && (
+                        <p className="price-from m-0 me-2">
+                          From{" "}
+                          <span className="fw-bolder ms-1">
+                            {currencyDisplay(
+                              event.priceRanges[1].min,
+                              event.priceRanges[1].currency
+                            )}
+                          </span>
+                        </p>
+                      )}
+                      {event.priceRanges && event.priceRanges > 0 && (
+                        <p className="m-0 price-to">
+                          To{" "}
+                          <span className="fw-bolder ms-1">
+                            {currencyDisplay(
+                              event.priceRanges[1].max,
+                              event.priceRanges[1].currency
+                            )}
+                          </span>
+                        </p>
+                      )}
                     </div>
-                    <a href="#" className="btn btn-primary">
-                      Get Tickets!
-                    </a>
+                    {event.url && (
+                      <a
+                        href={event.url}
+                        target="_blank"
+                        className="btn btn-primary"
+                      >
+                        Get Tickets!
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
-              <Typography paragraph>Important note</Typography>
-              <Typography paragraph>Ticket purchase information</Typography>
+              <Typography paragraph sx={{ marginTop: "20px" }}>
+                {event.pleaseNote && (
+                  <>
+                    <span className="event-note-text">
+                      <i class="fa-solid fa-circle-exclamation me-2"></i>
+                      {event.pleaseNote}
+                    </span>
+                  </>
+                )}
+              </Typography>
             </CardContent>
           </Collapse>
         </Card>
