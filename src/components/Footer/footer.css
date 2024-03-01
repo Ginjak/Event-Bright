@@ -1,4 +1,29 @@
-.footer {
-  background: red !important;
-  height: 60px;
+:root {
+  --primary-color: #9BB8CD;
+  --secondary-color: #FFF7D4;
+  --third-color: #EEC759;
+  --fourth-color: #B1C381;
+  --text: #17283d;
+  --side-margins: 2%;
+}
+
+.bg-body-tertiary {
+  height: 200px;
+}
+
+.logo {
+  color: var(--text) !important;
+  margin-left: var(--side-margins) !important;
+}
+
+.logo span {
+  margin-left: 10px;
+}
+
+.margins {
+  margin-left: var(--side-margins);
+}
+
+.display-inline {
+  display: inline;
 }
