@@ -1,11 +1,11 @@
-import "./searchbar.css";
+import "./hero.css";
 import React, { useState } from "react";
 import axios from "axios";
-import Eventcard from "../Eventcard";
+import Event from "../Event";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function Searchbar() {
+function Hero() {
   const formatDateForAPIStart = (date) => {
     // Convert date to isoString
     const isoString = new Date(date).toISOString();
@@ -94,7 +94,7 @@ function Searchbar() {
                 />
               </div>
               <div className="col-md-6">
-                <label htmlFor="city" class="form-label">
+                <label htmlFor="city" className="form-label">
                   City
                 </label>
                 <input
@@ -159,7 +159,9 @@ function Searchbar() {
                 >
                   Search
                 </button>
-                <Eventcard eventData={events} searchExecuted={searchExecuted} />
+                {searchExecuted && events && (
+                  <Event eventData={events} searchExecuted={searchExecuted} />
+                )}
               </div>
             </div>
           </div>
@@ -169,4 +171,4 @@ function Searchbar() {
   );
 }
 
-export default Searchbar;
+export default Hero;
