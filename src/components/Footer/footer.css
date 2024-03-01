@@ -1,3 +1,4 @@
 .footer {
-  background: green;
+  background: red !important;
+  height: 60px;
 }

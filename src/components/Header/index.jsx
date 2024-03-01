@@ -1,11 +1,9 @@
-import "./header.css";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+// import Navbar from "../Navbar";
+
 function Header({ children }) {
-  return (
-    <>
-      <header className="header">{children}</header>
-    </>
-  );
+  return <>{children}</>;
 }
 
 export default Header;

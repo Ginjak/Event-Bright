@@ -10,9 +10,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/style": "^0.8.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.11",
+    "@mui/material": "^5.15.11",
+    "@mui/x-date-pickers": "^6.19.5",
+    "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
+<<<<<<< HEAD
     "dom": "^0.0.3",
+=======
+    "dayjs": "^1.11.10",
+    "lottie-react": "^2.4.0",
+>>>>>>> fd871807737ffed8e2f54ff186f1ad67f0ac583e
     "react": "^18.2.0",
+    "react-bootstrap-date-picker": "^5.1.0",
+    "react-datepicker": "^6.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.1"
   },
