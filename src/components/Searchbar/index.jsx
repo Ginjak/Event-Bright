@@ -2,13 +2,15 @@ import "./searchbar.css";
 import React, { useState } from "react";
 import axios from "axios";
 import Eventcard from "../Eventcard";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Searchbar() {
   const [keyword, setKeyword] = useState("");
   const [city, setCity] = useState("");
   const [startDateTime, setStartDateTime] = useState("");
   const [endDateTime, setEndDateTime] = useState("");
-  const [numResults, setNumResults] = useState(10);
+  const [numResults, setNumResults] = useState(5);
   const [events, setEvents] = useState(null);
   const [searchExecuted, setSearchExecuted] = useState(false); // Initialize searchExecuted state
 
@@ -35,45 +37,62 @@ function Searchbar() {
     }
   };
 
-  const formatDateForAPI = (date) => {
-    return date + "T12:00:00Z";
+  const formatDateForAPIStart = (date) => {
+    // Convert date to isoString
+    const isoString = new Date(date).toISOString();
+    // Return date with correct format for ticketmaster API
+    return isoString.slice(0, -5) + "Z";
+  };
+
+  const formatDateForAPIEnd = (date) => {
+    // Create a new Date object
+    const endDate = new Date(date);
+    // Add one day to the date
+    endDate.setDate(endDate.getDate() + 1);
+    // Convert adjusted date to ISO 8601 format
+    const adjustedEndDate = endDate.toISOString();
+    // Return date with correct format for ticketmaster API
+    return adjustedEndDate.slice(0, -5) + "Z";
   };
 
   const handleSearch = () => {
-    const formattedStartDate = formatDateForAPI(startDateTime);
-    const formattedEndDate = formatDateForAPI(endDateTime);
+    const formattedStartDate = formatDateForAPIStart(startDateTime);
+
+    const formattedEndDate = formatDateForAPIEnd(endDateTime);
+    console.log("Formatted Start Date:", formattedStartDate);
+    console.log("Formatted End Date:", formattedEndDate);
     fetchEvents(formattedStartDate, formattedEndDate);
   };
 
   return (
     <>
       <div className="jumbotron jumbotron-fluid py-5 ps-0">
-        <div id="background-overlay" class="container-fluid ms-0">
-          <div class="container-fluid">
-            <h1 class="display-4 text-white">EventBright</h1>
-            <p class="lead text-white mb-5">
+        <div id="background-overlay" className="container-fluid ms-0">
+          <div className="container-fluid">
+            <h1 className="display-4 text-white">EventBright</h1>
+            <p className="lead text-white mb-5">
               What's on, where, and how the weather is there!
             </p>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label for="keyword" class="form-label">
+            <div className="row g-3">
+              <div className="col-md-6">
+                <label htmlFor="keyword" className="form-label">
                   Keyword
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="keyword"
                   placeholder="Search for a band, city or venue"
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
                 />
               </div>
-              <div class="col-md-6">
-                <label for="city" class="form-label">
+              <div className="col-md-6">
+                <label htmlFor="city" class="form-label">
                   City
                 </label>
                 <input
-                  class="form-control"
+                  className="form-control"
                   id="city"
                   placeholder="City"
                   type="text"
@@ -81,41 +100,43 @@ function Searchbar() {
                   onChange={(e) => setCity(e.target.value)}
                 />
               </div>
-              <div class="col-md-4">
-                <label for="inputStartDate" class="form-label">
+              <div className="col-md-4">
+                <label htmlFor="inputStartDate" className="form-label">
                   Start Date
                 </label>
-                <input
-                  id="inputStartDate"
-                  class="form-control"
-                  type="date"
-                  value={startDateTime}
-                  onChange={(e) => setStartDateTime(e.target.value)}
-                />
+                <div>
+                  <DatePicker
+                    id="inputStartDate"
+                    className="form-control"
+                    selected={startDateTime ? new Date(startDateTime) : null}
+                    onChange={(date) => setStartDateTime(date)}
+                  />
+                </div>
               </div>
-              <div class="col-md-4">
-                <label for="inputEndDate" class="form-label">
+              <div className="col-md-4">
+                <label htmlFor="inputEndDate" className="form-label">
                   End Date
                 </label>
-                <input
-                  id="inputEndDate"
-                  class="form-control"
-                  type="date"
-                  value={endDateTime}
-                  onChange={(e) => setEndDateTime(e.target.value)}
-                />
+                <div>
+                  <DatePicker
+                    id="inputEndDate"
+                    className="form-control"
+                    selected={endDateTime ? new Date(endDateTime) : null}
+                    onChange={(date) => setEndDateTime(date)}
+                  />
+                </div>
               </div>
-              <div class="col-md-4">
-                <label for="inputResultsNum" class="form-label">
+              <div className="col-md-4">
+                <label htmlFor="inputResultsNum" className="form-label">
                   Number of Results
                 </label>
                 <select
                   id="inputResultsNum"
-                  class="form-select"
+                  className="form-select"
                   value={numResults}
                   onChange={(e) => setNumResults(e.target.value)}
                 >
-                  <option selected>
+                  <option disabled>
                     Select the number of events to see...
                   </option>
                   <option value="5">5</option>
@@ -125,9 +146,9 @@ function Searchbar() {
                   <option value="40">40</option>
                 </select>
               </div>
-              <div class="col-12">
+              <div className="col-12">
                 <button
-                  class="btn btn-primary float-end my-2"
+                  className="btn btn-primary float-end my-2"
                   onClick={handleSearch}
                 >
                   Search
