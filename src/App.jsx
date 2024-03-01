@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
@@ -11,6 +10,8 @@ import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Eventcard from "./components/Eventcard";
 import About from "./components/About";
+import "./App.css";
+
 function App() {
   return (
     <>

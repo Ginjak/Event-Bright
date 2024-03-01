@@ -1,4 +1,5 @@
 import React from "react";
+import "./contactForm.css";
 
 const Contactform = () => {
   return (
@@ -6,8 +7,6 @@ const Contactform = () => {
       <div className="container-fluid py-5">
         <div className="contact-form">
           <h2>Contact Us</h2>
-          <br />
-          <br />
           <form>
             <div className="form-group">
               <label htmlFor="name">
@@ -45,10 +44,6 @@ const Contactform = () => {
               <strong>Submit</strong>
             </button>
           </form>
-          <br />
-          <br />
-          <br />
-          <div></div>
         </div>
       </div>
     </div>
