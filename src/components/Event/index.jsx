@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./event.css";
-import { styled } from "@mui/material/styles";
+import currencyFormatter from "currency-formatter";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,108 +11,288 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+function Event({ eventData, searchExecuted }) {
+  const [expandedId, setExpandedId] = useState(null); // State to track the currently expanded card's ID
 
-const Event = () => {
-  const [expanded, setExpanded] = useState(false);
+  // Adding currency symbol
+  function currencyDisplay(amount, currencyCode) {
+    const formattedAmount = currencyFormatter.format(amount, {
+      code: currencyCode,
+    });
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+    return formattedAmount;
+  }
+
+  const handleExpandClick = (id) => {
+    setExpandedId(expandedId === id ? null : id); // Toggle expanded state
   };
 
+  if (
+    searchExecuted &&
+    (!eventData ||
+      !eventData._embedded ||
+      !eventData._embedded.events ||
+      eventData._embedded.events.length === 0)
+  ) {
+    return (
+      <>
+        {" "}
+        <div className="container-xxl">
+          <div className="no-events d-flex justify-content-center align-items-center">
+            <p>Sorry... there are no events available</p>
+          </div>
+          ;
+        </div>
+        ;
+      </>
+    );
+  }
+
+  const events =
+    eventData && eventData._embedded ? eventData._embedded.events : [];
+
+  function largeImage(images) {
+    for (const image of images) {
+      if (
+        image.hasOwnProperty("width") &&
+        typeof image.width === "number" &&
+        image.width > 1023
+      ) {
+        return image.url;
+      }
+    }
+    return null;
+  }
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            A
-          </Avatar>
-        }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/card-img.jpg"
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          More Details
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-            over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-            stirring occasionally until lightly browned, 6 to 8 minutes.
-            Transfer shrimp to a large plate and set aside, leaving chicken and
-            chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,
-            onion, salt and pepper, and cook, stirring often until thickened and
-            fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2
-            cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is
-            absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-            shrimp and mussels, tucking them down into the rice, and cook again
-            without stirring, until mussels have opened and rice is just tender,
-            5 to 7 minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+    <div className="container-xxl">
+      {events.map((event, index) => (
+        <Card key={index} sx={{ maxWidth: "100%", margin: "30px 0px" }}>
+          <CardHeader
+            avatar={
+              <Avatar
+                sx={{
+                  bgcolor: red[500],
+                  width: 75,
+                  height: 75,
+                }}
+                aria-label="event"
+              >
+                <div className="d-flex flex-column align-items-center">
+                  {event.dates.start.localDate && (
+                    <p className="avatar-text mb-1 text-uppercase">
+                      {new Date(event.dates.start.localDate).toLocaleString(
+                        "default",
+                        { month: "short" }
+                      )}
+                    </p>
+                  )}
+                  {event.dates.start.localDate && (
+                    <p className="avatar-text m-0">
+                      {new Date(event.dates.start.localDate)
+                        .getDate()
+                        .toString()
+                        .padStart(2, "0")}
+                    </p>
+                  )}
+                </div>
+              </Avatar>
+            }
+            title={
+              <div className="mui-header-content">
+                {event.name && (
+                  <h5 className="mui-header-title"> {event.name}</h5>
+                )}
+                <div className="venue-dates-wraper d-flex flex-column flex-md-row justify-content-between">
+                  <div className="city-venue-wraper d-flex">
+                    {event._embedded.venues[0].city.name && (
+                      <p className="venue-city mb-0 fw-bolder me-2">
+                        {event._embedded.venues[0].city.name}
+                      </p>
+                    )}
+                    {event._embedded.venues[0].name && (
+                      <p className="venue-name mb-0 fw-bolder ">
+                        {event._embedded.venues[0].name}
+                      </p>
+                    )}
+                  </div>
+                  <div className="date-time-wraper d-flex me-5">
+                    {event.dates.start.localDate && (
+                      <p className="weekday  me-2">
+                        {new Date(event.dates.start.localDate).toLocaleString(
+                          "en-US",
+                          { weekday: "short" }
+                        )}
+                      </p>
+                    )}
+                    {event.dates.start.localTime && (
+                      <p>
+                        {event.dates.start.localTime
+                          .split(":")
+                          .slice(0, 2)
+                          .join(":")}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            }
+          />
+          <CardActions
+            disableSpacing
+            sx={{
+              marginTop: "-56px",
+              justifyContent: "flex-end",
+            }}
+          >
+            <IconButton
+              aria-label="show more"
+              onClick={() => handleExpandClick(index)}
+              sx={{
+                transform: expandedId === index ? "rotate(180deg)" : "none",
+              }}
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse in={expandedId === index} timeout="auto" unmountOnExit>
+            <CardContent>
+              <div className="row">
+                <div className="col-4">
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image={largeImage(event.images)}
+                    alt={event.name}
+                  />
+                </div>
+                <div className="col-8 d-flex flex-column justify-content-between">
+                  <div className="bio-venue-wraper d-flex justify-content-between h-100 pb-3">
+                    <div className="show-bio-wraper d-flex flex-column justify-content-between">
+                      <div className="show-date-time d-flex">
+                        {event.dates.start.localDate && (
+                          <p className="show-date mb-0 me-3">
+                            {" "}
+                            {event.dates.start.localDate}
+                          </p>
+                        )}
+                        {event.dates.start.localTime && (
+                          <p className="show-time mb-0">
+                            {event.dates.start.localTime
+                              .split(":")
+                              .slice(0, 2)
+                              .join(":")}
+                          </p>
+                        )}
+                      </div>
+                      <div className="event-type d-flex">
+                        {event.classifications &&
+                          event.classifications[0].genre.name !==
+                            "Undefined" && (
+                            <p className="show-genre mb-0 btn-event me-2">
+                              {event.classifications[0].genre.name}
+                            </p>
+                          )}
+                        {event.classifications &&
+                          event.classifications.length > 0 && (
+                            <p className="show-segment mb-0 btn-event me-2">
+                              {event.classifications[0].segment.name}
+                            </p>
+                          )}
+                        {event.ageRestrictions && (
+                          <div className="m-0 p-0">
+                            {event.ageRestrictions.legalAgeEnforced ? (
+                              <p className="btn-event adults m-0">+18</p>
+                            ) : (
+                              <p className="btn-event kids m-0">All ages</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="venue-details-wraper">
+                      {event._embedded.venues[0].name && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].name}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].address && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].address.line1}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].address.line2 && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].address.line2}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].postalCode && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].postalCode}
+                        </p>
+                      )}
+                      {event._embedded.venues[0].city.name && (
+                        <p className="text-end mb-0">
+                          {event._embedded.venues[0].city.name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="price-purchase-wraper d-flex justify-content-end">
+                    <div className="price-wraper d-flex me-4">
+                      {event.priceRanges && event.priceRanges > 0 && (
+                        <p className="price-from m-0 me-2">
+                          From{" "}
+                          <span className="fw-bolder ms-1">
+                            {currencyDisplay(
+                              event.priceRanges[1].min,
+                              event.priceRanges[1].currency
+                            )}
+                          </span>
+                        </p>
+                      )}
+                      {event.priceRanges && event.priceRanges > 0 && (
+                        <p className="m-0 price-to">
+                          To{" "}
+                          <span className="fw-bolder ms-1">
+                            {currencyDisplay(
+                              event.priceRanges[1].max,
+                              event.priceRanges[1].currency
+                            )}
+                          </span>
+                        </p>
+                      )}
+                    </div>
+                    {event.url && (
+                      <a
+                        href={event.url}
+                        target="_blank"
+                        className="btn btn-primary"
+                      >
+                        Get Tickets!
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <Typography paragraph sx={{ marginTop: "20px" }}>
+                {event.pleaseNote && (
+                  <>
+                    <span className="event-note-text">
+                      <i className="fa-solid fa-circle-exclamation me-2"></i>
+                      {event.pleaseNote}
+                    </span>
+                  </>
+                )}
+              </Typography>
+            </CardContent>
+          </Collapse>
+        </Card>
+      ))}
+    </div>
   );
-};
+}
 
 export default Event;

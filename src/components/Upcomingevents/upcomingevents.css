@@ -1,0 +1,17 @@
+.upcoming-events {
+  max-width: 900px;
+  margin: auto;
+}
+.upcoming-events-wraper .card {
+  max-height: 325px;
+}
+
+.upcoming-events-wraper .card-img-overlay {
+  background: rgb(0, 0, 0, 0.6);
+}
+
+.card-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
