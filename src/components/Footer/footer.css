@@ -4,35 +4,22 @@
   --third-color: #EEC759;
   --link-hover: #fffcfcc8;
   --dark: #17283d;
-  --side-margins: 2%;
 }
 
-/* over riding bootstrap class styling */
-/* targetted the footer class otherwise changes to the actual navbar would occur */
-.footer .bg-body-tertiary {
+/* background */
+.bg-image {
   background-image: url(/public/background-final-project-coding-v2\ -\ Copy.png) !important;
 }
 
-.footer .navbar {
-  border: var(--dark) solid 5px;
+.bg-opacity {
+  background-color: var(--third-color) !important;
 }
 
-/* main effects */
-.footer {
-  background-color: var(--secondary-color);
-}
-
+/* wrapping */
 nav {
   display: flex;
   flex-wrap: wrap;
-}
-
-.margins {
-  margin-left: var(--side-margins);
-}
-
-.page-links h6 {
-  display: inline-block;
+  border: var(--dark) solid 5px;
 }
 
 /* containers */
@@ -40,37 +27,38 @@ nav {
 .pages-container {
   display: flex;
   align-items: center;
+}
+
+.pages-container {
   padding: 2%;
 }
 
 .date-container {
+  background-color: var(--secondary-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1%;
+  padding: 0.5%;
   border: var(--dark) solid 5px;
   border-top: hidden;
 }
 
-.socials-list {
-  margin: var(--side-margins);
-}
-
-.pages-links {
-  justify-content: space-around;
+/* media icons */
+.spacing {
+  margin: 5px;
+  padding: 2px;
 }
 
 /* logo & title */
 .logo {
   color: var(--dark) !important;
-  margin-left: var(--side-margins) !important;
 }
 
 .logo span {
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
-/* links */
+/* link decorations */
 a {
   text-decoration: none;
   color: var(--dark);
@@ -84,9 +72,15 @@ a {
 
 /* media queries */
 @media screen and (max-width: 376px) {
-  .socials-container,
-  .pages-container {
+  nav {
     align-items: center;
     justify-content: center;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .socials-container,
+  .pages-container {
+    position: fixed;
   }
 }
