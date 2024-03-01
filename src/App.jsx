@@ -23,9 +23,10 @@ function App() {
         <Hero />
         {/* <Searchbar /> */}
         {/* <Eventcard /> */}
+
         <Upcomingevents />
-        <About />
-        <Contactform />
+        {/* <About /> */}
+        {/* <Contactform /> */}
         <Routes>
           <Route path="/results" element={<Results />} />
           <Route path="/event" element={<Event />} />
