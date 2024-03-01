@@ -10,15 +10,17 @@ const Footer = () => {
     <>
     <div className="footer">
       <nav className="navbar bg-body-tertiary">
+      <div className='background-effect m-5 border border-5'>
         <div className="container-fluid">
           <a className="navbar-brand logo" href="#">
             <img src="/eventBright-logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top"/>
-            <span>EvenBright</span>
+            <span>EventBright</span>
           </a>
         </div>
+      </div>
       </nav>
       {/* social medias >> */}
-      <div className="socials-container">
+      <div className="socials-container background-effect">
         <h3 className="fs-6 margins">Future links </h3>
         <div className="socials-list display-inline">
           <a href="#" className="display-inline">
@@ -32,7 +34,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <div className="pages-container">
+      <div className="pages-container background-effect">
         <div className="page-links display-inline">
           <span className="margins">Explore: </span>
           <a href="#" className="link">
