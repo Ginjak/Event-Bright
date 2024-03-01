@@ -159,49 +159,6 @@ function Searchbar() {
           </div>
         </div>
       </div>
-
-      {/* <div>
-        <label>
-          Keyword:
-          <input
-            type="text"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-        </label>
-      </div> */}
-      {/* <div>
-        <label>
-          City:
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-        </label>
-      </div> */}
-      {/* <div>
-        <label>
-          Start Date:
-          <input
-            type="date"
-            value={startDateTime}
-            onChange={(e) => setStartDateTime(e.target.value)}
-          />
-        </label>
-      </div> */}
-      {/* <div>
-        <label>
-          End Date:
-          <input
-            type="date"
-            value={endDateTime}
-            onChange={(e) => setEndDateTime(e.target.value)}
-          />
-        </label>
-      </div> */}
-      {/* <button onClick={handleSearch}>Search</button>
-      <Eventcard eventData={events} searchExecuted={searchExecuted} /> */}
     </>
   );
 }

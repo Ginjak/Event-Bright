@@ -1,8 +1,28 @@
+import React, { useState } from "react";
 import "./eventcard.css";
-import React from "react";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Collapse from "@mui/material/Collapse";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { red } from "@mui/material/colors";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareIcon from "@mui/icons-material/Share";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function Eventcard({ eventData, searchExecuted }) {
-  // Checking if search has been executed and eventData is undefined or if _embedded or events do not exist
+  const [expandedId, setExpandedId] = useState(null); // State to track the currently expanded card's ID
+
+  const handleExpandClick = (id) => {
+    setExpandedId(expandedId === id ? null : id); // Toggle expanded state
+  };
+
   if (
     searchExecuted &&
     (!eventData ||
@@ -13,103 +33,163 @@ function Eventcard({ eventData, searchExecuted }) {
     return <div className="test">No events available</div>;
   }
 
-  // Accessing the events array from _embedded
   const events =
     eventData && eventData._embedded ? eventData._embedded.events : [];
-  console.log(events);
-
-  // Function to check if array has a width property with a value of 1024 or more
 
   function largeImage(images) {
-    // Iterate through the images array
     for (const image of images) {
-      // Check if the image has a "width" property greater than 1023
       if (
         image.hasOwnProperty("width") &&
         typeof image.width === "number" &&
         image.width > 1023
       ) {
-        return image.url; // Return the URL of the first image that meets the condition
+        return image.url;
       }
     }
-    return null; // Return null if no image with width > 1023 is found
+    return null;
   }
 
   return (
-    <div>
-      {/* Mapping through the events array to generate cards for each event  */}
+    <div className="container-xxl">
       {events.map((event, index) => (
-        <div key={index} className="event-card">
-          {event.name && <p>Name: {event.name}</p>}
-
-          {event.dates.start.localDate && (
-            <p>Show date: {event.dates.start.localDate}</p>
-          )}
-
-          {event.dates.start.localTime && (
-            <p>Show time: {event.dates.start.localTime}</p>
-          )}
-          {event.classifications &&
-            event.classifications[0].genre.name !== "Undefined" && (
-              <p>Genre: {event.classifications[0].genre.name}</p>
-            )}
-          {event.classifications[0].segment.name && (
-            <p>Segment/event type: {event.classifications[0].segment.name}</p>
-          )}
-          {event.sales.public.startDateTime && (
-            <p>Sales start date: {event.sales.public.startDateTime}</p>
-          )}
-          {event.sales.public.endDateTime && (
-            <p>Sales end date: {event.sales.public.endDateTime}</p>
-          )}
-          {event.url && <p>Link to purchase tickets: {event.url}</p>}
-          {event._embedded.venues[0].name && (
-            <p>Venue name: {event._embedded.venues[0].name}</p>
-          )}
-          {event._embedded.venues[0].city.name && (
-            <p>Venue City: {event._embedded.venues[0].city.name}</p>
-          )}
-          {event._embedded.venues[0].address.line1 && (
-            <p>
-              Venue Address (Street name):{" "}
-              {event._embedded.venues[0].address.line1}
-            </p>
-          )}
-          {event._embedded.venues[0].postalCode && (
-            <p>
-              Venue Address (Postcode): {event._embedded.venues[0].postalCode}
-            </p>
-          )}
-          {event.priceRanges && (
-            <p>Price range (from): {event.priceRanges[1].min}</p>
-          )}
-          {event.priceRanges && (
-            <p>Price range (to): {event.priceRanges[1].max}</p>
-          )}
-          {event.priceRanges && (
-            <p>Price currency: {event.priceRanges[1].currency}</p>
-          )}
-          {event.ageRestrictions && (
-            <div>
-              Legal age:{" "}
-              {event.ageRestrictions.legalAgeEnforced ? (
-                <img
-                  src="../../public/eventBright-logo.png"
-                  alt="Only for adults"
-                />
-              ) : (
-                <img
-                  className="age-restriction"
-                  src="./eventBright-logo.png"
-                  alt="OK for kids"
-                />
-              )}
-            </div>
-          )}
-          {event.pleaseNote && <p>Important note: {event.pleaseNote}</p>}
-          {event.info && <p>Ticket purchase information: {event.info}</p>}
-          {event.images && <img src={largeImage(event.images)} alt="" />}
-        </div>
+        <Card key={index} sx={{ maxWidth: "100%" }}>
+          <CardHeader
+            avatar={
+              <Avatar
+                sx={{
+                  bgcolor: red[500],
+                  width: 75,
+                  height: 75,
+                }}
+                aria-label="event"
+              >
+                <div className="d-flex flex-column align-items-center">
+                  {event.dates.start.localDate && (
+                    <p className="avatar-text mb-1 text-uppercase">
+                      {new Date(event.dates.start.localDate).toLocaleString(
+                        "default",
+                        { month: "short" }
+                      )}
+                    </p>
+                  )}
+                  {event.dates.start.localDate && (
+                    <p className="avatar-text m-0">
+                      {new Date(event.dates.start.localDate)
+                        .getDate()
+                        .toString()
+                        .padStart(2, "0")}
+                    </p>
+                  )}
+                </div>
+              </Avatar>
+            }
+            title={
+              <div className="mui-header-content">
+                {event.name && (
+                  <h5 className="mui-header-title"> {event.name}</h5>
+                )}
+                <div className="venue-dates-wraper d-flex flex-column flex-md-row justify-content-between">
+                  <div className="city-venue-wraper d-flex">
+                    {event._embedded.venues[0].city.name && (
+                      <p class="venue-city mb-0 fw-bolder me-2">
+                        {event._embedded.venues[0].city.name}
+                      </p>
+                    )}
+                    {event._embedded.venues[0].name && (
+                      <p class="venue-name mb-0 fw-bolder ">
+                        {event._embedded.venues[0].name}
+                      </p>
+                    )}
+                  </div>
+                  <div className="date-time-wraper d-flex me-5">
+                    {event.dates.start.localDate && (
+                      <p className="weekday  me-2">
+                        {new Date(event.dates.start.localDate).toLocaleString(
+                          "en-US",
+                          { weekday: "short" }
+                        )}
+                      </p>
+                    )}
+                    {event.dates.start.localTime && (
+                      <p>
+                        {event.dates.start.localTime
+                          .split(":")
+                          .slice(0, 2)
+                          .join(":")}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            }
+          />
+          <CardActions
+            disableSpacing
+            sx={{
+              marginTop: "-56px",
+              justifyContent: "flex-end",
+            }}
+          >
+            <IconButton
+              aria-label="show more"
+              onClick={() => handleExpandClick(index)} // Pass index as ID
+              // Add conditional style to rotate icon when expanded
+              sx={{
+                transform: expandedId === index ? "rotate(180deg)" : "none",
+              }}
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse
+            in={expandedId === index} // Check if the current card's ID matches the expanded ID
+            timeout="auto"
+            unmountOnExit
+          >
+            <CardContent>
+              <div className="row">
+                <div className="col-4">
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image="/card-img.jpg"
+                    alt="Paella dish"
+                  />
+                </div>
+                <div className="col-8">
+                  <div className="bio-venue-wraper d-flex justify-content-between">
+                    <div className="show-bio-wraper">
+                      <p>Show date</p>
+                      <p>Show time</p>
+                      <p>Genre</p>
+                      <p>Type</p>
+                      <p>Legal for kids</p>
+                    </div>
+                    <div className="venue-details-wraper">
+                      <p>Venue name</p>
+                      <p>Venue city</p>
+                      <p>Venue Address-1</p>
+                      <p>Venue Address-2</p>
+                      <p>Venue Postcode</p>
+                    </div>
+                  </div>
+                  <div className="price-purchase-wraper d-flex justify-content-between">
+                    <div className="price-wraper d-flex">
+                      <p>Price from</p>
+                      <p>Price till</p>
+                      <p>Price currency</p>
+                    </div>
+                    <a href="#" className="btn btn-primary">
+                      Get Tickets!
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <Typography paragraph>Important note</Typography>
+              <Typography paragraph>Ticket purchase information</Typography>
+            </CardContent>
+          </Collapse>
+        </Card>
       ))}
     </div>
   );
