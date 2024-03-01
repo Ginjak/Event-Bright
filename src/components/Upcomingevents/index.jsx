@@ -55,10 +55,11 @@ const Upcomingevents = () => {
 
   return (
     <>
-      <div className="upcoming-events">
+      <div className="upcoming-events container-xxl my-5">
+        <h2>Upcoming events</h2>
         {arrWithUniqueEvents.length > 0 ? (
-          <div className="upcoming-events-wraper row row-cols-1 row-cols-md-2 g-4">
-            {arrWithUniqueEvents.slice(0, 8).map((event, index) => (
+          <div className="upcoming-events-wraper row row-cols-1 row-cols-md-3 g-4">
+            {arrWithUniqueEvents.slice(0, 12).map((event, index) => (
               <div className="col" key={event.id}>
                 <div className="card bg-dark text-white h-100 position-relative">
                   <img

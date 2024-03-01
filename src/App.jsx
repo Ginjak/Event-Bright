@@ -23,7 +23,7 @@ function App() {
         <Hero />
         {/* <Searchbar /> */}
         {/* <Eventcard /> */}
-
+        <Upcomingevents />
         <About />
         <Contactform />
         <Routes>
@@ -33,7 +33,7 @@ function App() {
           <Route path="*" element={<Home />} />
         </Routes>
       </Router>
-      <Upcomingevents />
+
       <Footer />
     </>
   );
