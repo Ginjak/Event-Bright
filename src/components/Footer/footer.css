@@ -78,9 +78,11 @@ a {
   }
 }
 
+
 @media screen and (max-width:900px) {
   .socials-container,
   .pages-container {
     position: fixed;
   }
 }
+

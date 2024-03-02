@@ -1,3 +1,20 @@
+.events-section {
+  position: relative;
+  background: var(--dark);
+}
+.events-section:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("/music-weather-pic.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(100%);
+  opacity: 0.05;
+}
+
 .upcoming-events-wraper .card {
   max-height: 325px;
 }

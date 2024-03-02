@@ -68,9 +68,10 @@ function Event({ eventData, searchExecuted }) {
   }
 
   return (
-    <div className="container-xxl">
+    <div className="container-xxl py-5">
+      <h2 className="text-white mb-3">Events</h2>
       {events.map((event, index) => (
-        <Card key={index} sx={{ maxWidth: "100%", margin: "30px 0px" }}>
+        <Card key={index} sx={{ maxWidth: "100%", marginBottom: "30px" }}>
           <CardHeader
             avatar={
               <Avatar
