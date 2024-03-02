@@ -61,8 +61,8 @@ const Upcomingevents = () => {
 
   return (
     <>
-      <div className="upcoming-events container-xxl my-5">
-        <h2>Upcoming events</h2>
+      <div className="upcoming-events container-xxl py-5 position-relative">
+        <h2 className="text-white">Upcoming events</h2>
         <div className="buttons-wraper my-3">
           <button
             className="events-button"
