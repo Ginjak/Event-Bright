@@ -1,4 +1,4 @@
-import "./Hero.css";
+import "./hero.css";
 import React, { useState } from "react";
 
 function Hero() {
