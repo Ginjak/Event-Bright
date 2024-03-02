@@ -1,43 +1,25 @@
 :root {
-  --primary-color: #9bb8cd;
-  --secondary-color: #ede8d2;
-  --third-color: #eec759;
-  --link-hover: #ecf1e1c8;
-  --back-drop: #ffffffc8;
+  --primary-color: #9BB8CD;
+  --secondary-color: #fff9fd;
+  --third-color: #EEC759;
+  --link-hover: #fffcfcc8;
   --dark: #17283d;
-  --side-margins: 2%;
 }
 
-/* over riding bootstrap class styling */
-.bg-body-tertiary {
-  background-color: var(--secondary-color) !important;
-  height: 200px;
+/* background */
+.bg-image {
+  background-image: url(/public/background-final-project-coding-v2\ -\ Copy.png) !important;
 }
 
-/* targetted the footer class otherwise changes to the actual navbar would occur */
-.footer .navbar {
-  border: var(--dark) solid 10px;
+.bg-opacity {
+  background-color: var(--third-color) !important;
 }
 
-/* main effects */
-.footer {
-  background-color: var(--secondary-color);
-}
-
-.footer .background-effect {
-  background-color: var(--back-drop) !important;
-}
-
-.margins {
-  margin-left: var(--side-margins);
-}
-
-.display-inline {
-  display: inline-block;
-}
-
-.page-links h6 {
-  display: inline-block;
+/* wrapping */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  border: var(--dark) solid 5px;
 }
 
 /* containers */
@@ -45,29 +27,38 @@
 .pages-container {
   display: flex;
   align-items: center;
+}
+
+.pages-container {
   padding: 2%;
-  border: var(--dark) solid 10px;
 }
 
-.socials-list {
-  margin: var(--side-margins);
+.date-container {
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5%;
+  border: var(--dark) solid 5px;
+  border-top: hidden;
 }
 
-.pages-links {
-  justify-content: space-around;
+/* media icons */
+.spacing {
+  margin: 5px;
+  padding: 2px;
 }
 
 /* logo & title */
 .logo {
   color: var(--dark) !important;
-  margin-left: var(--side-margins) !important;
 }
 
 .logo span {
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
-/* links */
+/* link decorations */
 a {
   text-decoration: none;
   color: var(--dark);
@@ -81,9 +72,17 @@ a {
 
 /* media queries */
 @media screen and (max-width: 376px) {
-  .socials-container,
-  .pages-container {
+  nav {
     align-items: center;
     justify-content: center;
   }
 }
+
+
+@media screen and (max-width:900px) {
+  .socials-container,
+  .pages-container {
+    position: fixed;
+  }
+}
+
