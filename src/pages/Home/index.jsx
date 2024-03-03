@@ -58,23 +58,23 @@ function Home() {
       setEvents(response.data);
       console.log(response.data);
       setSearchExecuted(true); // Set searchExecuted to true after search button is clicked
-      setShowCityError(false); // Error message if City field is empty
+      // setShowCityError(false); // Error message if City field is empty
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   const handleSearch = () => {
-    if (city.trim() === "") {
-      // If city input is empty error message will change to true
-      setShowCityError(true);
-    } else {
-      const formattedStartDate = formatDateForAPIStart(startDateTime);
-      const formattedEndDate = formatDateForAPIEnd(endDateTime);
-      console.log("Formatted Start Date:", formattedStartDate);
-      console.log("Formatted End Date:", formattedEndDate);
-      fetchEvents(formattedStartDate, formattedEndDate);
-    }
+    // if (city.trim() === "" && keyword.trim() !== "") {
+    //   // If city input is empty error message will change to true
+    //   setShowCityError(true);
+    // } else {
+    const formattedStartDate = formatDateForAPIStart(startDateTime);
+    const formattedEndDate = formatDateForAPIEnd(endDateTime);
+    console.log("Formatted Start Date:", formattedStartDate);
+    console.log("Formatted End Date:", formattedEndDate);
+    fetchEvents(formattedStartDate, formattedEndDate);
+    // }
   };
 
   return (

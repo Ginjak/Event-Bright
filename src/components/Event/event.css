@@ -39,6 +39,35 @@
 .event-note-text i {
   color: #f44336;
 }
+
+.btn-tickets {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--dark);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-tickets:hover {
+  background: var(--primary-color);
+  color: var(--dark);
+  box-shadow: 0 0 3px var(--primary-color);
+}
+.text-dark-blue {
+  color: var(--dark);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .events-section
+    .MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.css-o69gx8-MuiCardMedia-root {
+    min-height: 350px;
+    object-fit: cover;
+  }
+}
+
 @media (max-width: 576px) {
   .mui-header-title {
     font-size: 16px;

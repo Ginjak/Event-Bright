@@ -40,7 +40,7 @@ function Event({ eventData, searchExecuted }) {
     return (
       <>
         {" "}
-        <div className="container-xxl">
+        <div className="container-xxl pt-5">
           <div className="no-events d-flex justify-content-center align-items-center">
             <p>Sorry... there are no events available</p>
           </div>
@@ -68,7 +68,7 @@ function Event({ eventData, searchExecuted }) {
   }
 
   return (
-    <div className="container-xxl py-5">
+    <div className="container-xxl py-5 position-relative">
       <h2 className="text-white mb-3">Events</h2>
       {events.map((event, index) => (
         <Card key={index} sx={{ maxWidth: "100%", marginBottom: "30px" }}>
@@ -103,20 +103,20 @@ function Event({ eventData, searchExecuted }) {
               </Avatar>
             }
             title={
-              <div className="mui-header-content">
+              <div className="mui-header-content text-dark-blue">
                 {event.name && (
                   <h5 className="mui-header-title"> {event.name}</h5>
                 )}
                 <div className="venue-dates-wraper d-flex flex-column flex-md-row justify-content-between">
                   <div className="city-venue-wraper d-flex">
-                    {event._embedded.venues[0].city.name && (
+                    {event._embedded?.venues[0]?.city?.name && (
                       <p className="venue-city mb-0 fw-bolder me-2">
-                        {event._embedded.venues[0].city.name}
+                        {event?._embedded?.venues[0]?.city?.name}
                       </p>
                     )}
-                    {event._embedded.venues[0].name && (
+                    {event?._embedded?.venues[0]?.name && (
                       <p className="venue-name mb-0 fw-bolder ">
-                        {event._embedded.venues[0].name}
+                        {event?._embedded?.venues[0]?.name}
                       </p>
                     )}
                   </div>
@@ -162,7 +162,7 @@ function Event({ eventData, searchExecuted }) {
           <Collapse in={expandedId === index} timeout="auto" unmountOnExit>
             <CardContent>
               <div className="row">
-                <div className="col-4">
+                <div className="col-md-4">
                   <CardMedia
                     component="img"
                     height="194"
@@ -170,18 +170,18 @@ function Event({ eventData, searchExecuted }) {
                     alt={event.name}
                   />
                 </div>
-                <div className="col-8 d-flex flex-column justify-content-between">
-                  <div className="bio-venue-wraper d-flex justify-content-between h-100 pb-3">
+                <div className="py-4 py-md-0 col-md-8 d-flex flex-column justify-content-between">
+                  <div className="bio-venue-wraper d-flex flex-column flex-md-row justify-content-between h-100 pb-3">
                     <div className="show-bio-wraper d-flex flex-column justify-content-between">
                       <div className="show-date-time d-flex">
                         {event.dates.start.localDate && (
-                          <p className="show-date mb-0 me-3">
+                          <p className="show-date mb-0 me-3 text-dark-blue fw-bolder">
                             {" "}
                             {event.dates.start.localDate}
                           </p>
                         )}
                         {event.dates.start.localTime && (
-                          <p className="show-time mb-0">
+                          <p className="show-time mb-0 text-dark-blue fw-bolder">
                             {event.dates.start.localTime
                               .split(":")
                               .slice(0, 2)
@@ -189,12 +189,12 @@ function Event({ eventData, searchExecuted }) {
                           </p>
                         )}
                       </div>
-                      <div className="event-type d-flex">
+                      <div className="mt-2 mt-md-0 event-type d-flex">
                         {event.classifications &&
-                          event.classifications[0].genre.name !==
+                          event?.classifications[0]?.genre?.name !==
                             "Undefined" && (
                             <p className="show-genre mb-0 btn-event me-2">
-                              {event.classifications[0].genre.name}
+                              {event?.classifications[0]?.genre?.name}
                             </p>
                           )}
                         {event.classifications &&
@@ -203,7 +203,7 @@ function Event({ eventData, searchExecuted }) {
                               {event.classifications[0].segment.name}
                             </p>
                           )}
-                        {event.ageRestrictions && (
+                        {/* {event.ageRestrictions && (
                           <div className="m-0 p-0">
                             {event.ageRestrictions.legalAgeEnforced ? (
                               <p className="btn-event adults m-0">+18</p>
@@ -211,57 +211,57 @@ function Event({ eventData, searchExecuted }) {
                               <p className="btn-event kids m-0">All ages</p>
                             )}
                           </div>
-                        )}
+                        )} */}
                       </div>
                     </div>
-                    <div className="venue-details-wraper">
-                      {event._embedded.venues[0].name && (
-                        <p className="text-end mb-0">
-                          {event._embedded.venues[0].name}
+                    <div className="mt-4 mt-md-0 venue-details-wraper text-dark-blue ">
+                      {event?._embedded?.venues[0]?.name && (
+                        <p className="text-md-end mb-0">
+                          {event?._embedded?.venues[0]?.name}
                         </p>
                       )}
-                      {event._embedded.venues[0].address && (
-                        <p className="text-end mb-0">
-                          {event._embedded.venues[0].address.line1}
+                      {event?._embedded?.venues[0]?.address && (
+                        <p className="text-md-end mb-0">
+                          {event?._embedded?.venues[0]?.address?.line1}
                         </p>
                       )}
-                      {event._embedded.venues[0].address.line2 && (
-                        <p className="text-end mb-0">
-                          {event._embedded.venues[0].address.line2}
+                      {event?._embedded?.venues[0]?.address?.line2 && (
+                        <p className="text-md-end mb-0">
+                          {event?._embedded?.venues[0]?.address?.line2}
                         </p>
                       )}
-                      {event._embedded.venues[0].postalCode && (
-                        <p className="text-end mb-0">
-                          {event._embedded.venues[0].postalCode}
+                      {event?._embedded?.venues[0]?.postalCode && (
+                        <p className="text-md-end mb-0">
+                          {event?._embedded?.venues[0]?.postalCode}
                         </p>
                       )}
-                      {event._embedded.venues[0].city.name && (
-                        <p className="text-end mb-0">
-                          {event._embedded.venues[0].city.name}
+                      {event?._embedded?.venues[0]?.city?.name && (
+                        <p className="text-md-end mb-0">
+                          {event?._embedded?.venues[0]?.city?.name}
                         </p>
                       )}
                     </div>
                   </div>
-                  <div className="price-purchase-wraper d-flex justify-content-end">
-                    <div className="price-wraper d-flex me-4">
-                      {event.priceRanges && event.priceRanges > 0 && (
-                        <p className="price-from m-0 me-2">
+                  <div className="price-purchase-wraper d-flex flex-column flex-md-row justify-content-between justify-content-md-end">
+                    <div className="price-wraper d-flex mb-4 mb-md-0 me-4">
+                      {event.priceRanges && (
+                        <p className="price-from m-0 me-2 text-dark-blue ">
                           From{" "}
-                          <span className="fw-bolder ms-1">
+                          <span className="fw-bold ms-1 ">
                             {currencyDisplay(
-                              event.priceRanges[1].min,
-                              event.priceRanges[1].currency
+                              event.priceRanges[0].min,
+                              event.priceRanges[0].currency
                             )}
                           </span>
                         </p>
                       )}
-                      {event.priceRanges && event.priceRanges > 0 && (
-                        <p className="m-0 price-to">
+                      {event.priceRanges && (
+                        <p className="m-0 price-to text-dark-blue">
                           To{" "}
-                          <span className="fw-bolder ms-1">
+                          <span className="fw-bold ms-1">
                             {currencyDisplay(
-                              event.priceRanges[1].max,
-                              event.priceRanges[1].currency
+                              event.priceRanges[0].max,
+                              event.priceRanges[0].currency
                             )}
                           </span>
                         </p>
@@ -271,7 +271,7 @@ function Event({ eventData, searchExecuted }) {
                       <a
                         href={event.url}
                         target="_blank"
-                        className="btn btn-primary"
+                        className="btn-tickets text-center"
                       >
                         Get Tickets!
                       </a>
@@ -289,7 +289,7 @@ function Event({ eventData, searchExecuted }) {
                   </>
                 )}
               </Typography>
-              <Weather city={event._embedded.venues[0].city.name} />
+              <Weather city={event?._embedded?.venues[0]?.city?.name} />
             </CardContent>
           </Collapse>
         </Card>
