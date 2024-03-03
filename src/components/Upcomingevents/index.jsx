@@ -1,4 +1,5 @@
 import "./upcomingevents.css";
+import currencyFormatter from "currency-formatter";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,6 +20,13 @@ const Upcomingevents = () => {
     });
   }
 
+  function currencyDisplay(amount, currencyCode) {
+    const formattedAmount = currencyFormatter.format(amount, {
+      code: currencyCode,
+    });
+
+    return formattedAmount;
+  }
   function smallImage(images) {
     // Iterate through the images array
     for (const image of images) {
@@ -141,10 +149,11 @@ const Upcomingevents = () => {
                           event.priceRanges[0].min !== 0 && (
                             <div className=" d-flex">
                               <p className="card-text m-0 me-2">
-                                {event.priceRanges[0].min}
-                              </p>
-                              <p className="card-text m-0">
-                                {event.priceRanges[0].currency}
+                                From{" "}
+                                {currencyDisplay(
+                                  event.priceRanges[0].min,
+                                  event.priceRanges[0].currency
+                                )}
                               </p>
                             </div>
                           )}
@@ -155,7 +164,7 @@ const Upcomingevents = () => {
                         href={event.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn-primary card-btn"
+                        className="btn-tickets text-center card-btn"
                       >
                         Get tickets!
                       </a>
