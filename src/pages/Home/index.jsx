@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Upcomingevents from "../../components/Upcomingevents";
 
 function Home() {
+  // Handling dates to work with Ticketmaster APi (Start and End date)
   const formatDateForAPIStart = (date) => {
     // Convert date to isoString
     const isoString = new Date(date).toISOString();
@@ -25,7 +26,10 @@ function Home() {
     return adjustedEndDate.slice(0, -5) + "Z";
   };
 
+  // Todays date
   const todaysDate = new Date();
+
+  // States for input values and datepicker
   const [keyword, setKeyword] = useState("");
   const [city, setCity] = useState("");
   const [startDateTime, setStartDateTime] = useState(
@@ -34,11 +38,14 @@ function Home() {
   const [endDateTime, setEndDateTime] = useState(
     formatDateForAPIEnd(todaysDate)
   );
+
+  // Set how many events to display (default 5)
   const [numResults, setNumResults] = useState(5);
   const [events, setEvents] = useState(null);
-  const [searchExecuted, setSearchExecuted] = useState(false); // Initialize searchExecuted state
-  const [showCityError, setShowCityError] = useState(false);
+  // Initialize searchExecuted state
+  const [searchExecuted, setSearchExecuted] = useState(false);
 
+  // API call function with parameters
   const fetchEvents = async (startDate, endDate) => {
     const API_KEY = "HjQcNIEkdwsQswwBQhfE1PO0smAoxyu4";
     const apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json";
@@ -54,29 +61,27 @@ function Home() {
           size: numResults,
         },
       });
-
+      //Infrmation from API passed to Events state
       setEvents(response.data);
-      console.log(response.data);
-      setSearchExecuted(true); // Set searchExecuted to true after search button is clicked
-      // setShowCityError(false); // Error message if City field is empty
+      // Set searchExecuted to true after search button is clicked
+      setSearchExecuted(true);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-
-  const handleSearch = () => {
-    // if (city.trim() === "" && keyword.trim() !== "") {
-    //   // If city input is empty error message will change to true
-    //   setShowCityError(true);
-    // } else {
+  // Handle date format transformation and calling Ticketmaster API with parameters
+  const handleSearch = async () => {
+    // Changing date format
     const formattedStartDate = formatDateForAPIStart(startDateTime);
     const formattedEndDate = formatDateForAPIEnd(endDateTime);
-    console.log("Formatted Start Date:", formattedStartDate);
-    console.log("Formatted End Date:", formattedEndDate);
-    fetchEvents(formattedStartDate, formattedEndDate);
-    // }
+    // Fething data from Ticketmaster API
+    await fetchEvents(formattedStartDate, formattedEndDate);
+    // Reset keyword value
+    setKeyword("");
+    // Reset city value
+    setCity("");
   };
-
+  // Displaying hero section with input fields
   return (
     <>
       <section className="hero-section">
@@ -91,6 +96,7 @@ function Home() {
                 <div className="col-md-2">
                   <label className="form-label">Select Dates</label>
                   <div>
+                    {/* Search Start date */}
                     <DatePicker
                       id="inputStartDate"
                       className="form-control date-input-left"
@@ -101,6 +107,7 @@ function Home() {
                 </div>
                 <div className="col-md-2 d-flex flex-column justify-content-end">
                   <div>
+                    {/* Search End date */}
                     <DatePicker
                       id="inputEndDate"
                       className="form-control date-input-right"
@@ -111,6 +118,7 @@ function Home() {
                 </div>
                 <label className="form-label d-lg-none d-block">Options</label>
                 <div className="col-md-5 col-lg-4 ps-lg-3 d-flex flex-column justify-content-end">
+                  {/* Search Event input */}
                   <input
                     type="text"
                     className="form-control"
@@ -121,6 +129,7 @@ function Home() {
                   />
                 </div>
                 <div className="col-md-3 col-lg-2 ps-md-3 d-flex flex-column justify-content-end">
+                  {/* Search City input */}
                   <input
                     className="form-control"
                     id="city"
@@ -132,6 +141,7 @@ function Home() {
                 </div>
 
                 <div className="col-md-1 col-lg-1 ps-md-3 d-flex flex-column justify-content-end">
+                  {/* Search results number (how many events to display) */}
                   <select
                     id="inputResultsNum"
                     className="form-select"
@@ -149,18 +159,19 @@ function Home() {
                   </select>
                 </div>
                 <div className="col-md-2 col-lg-1 d-flex flex-column justify-content-end ">
+                  {/* Search Button, execute search */}
                   <button className="search-btn m-0" onClick={handleSearch}>
                     Search
                   </button>
                 </div>
               </div>
-              {showCityError && <p className="text-danger">Enter city name</p>}
             </div>
           </div>
         </div>
       </section>
-
+      {/* Upcoming events/search results section  */}
       <section className="events-section">
+        {/* If search is executed and there are any events, Event component will be generated, otherwise Upcoming events are display (Initial state) */}
         {searchExecuted && events ? (
           <Event eventData={events} searchExecuted={searchExecuted} />
         ) : (
