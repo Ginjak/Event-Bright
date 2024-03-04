@@ -1,15 +1,11 @@
-.jumbotron {
-  background-image: url("/music-weather-pic.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+#jumbo-mini {
+    background-image: url("/public/artsyEvent.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-#background-overlay {
-  background-color: #00000080;
-  padding: 1rem;
-}
-
-.form-label {
-  color: white;
+#mini-overlay {
+    background-color: #00000080;
+    padding: 1rem;
 }

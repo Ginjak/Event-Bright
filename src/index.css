@@ -10,3 +10,22 @@
   padding: 6px 14px 6px 14px;
   border: none;
 }
+
+.container-fluid.contact-container {
+  display: flex;
+}
+
+.left-container {
+  flex: 1;
+  /* Add styles for the container on the left */
+}
+
+.right-container {
+  flex: 1;
+  /* Add styles for the container on the right */
+}
+
+.contact-container {
+  display: flex !important;
+  width: 100% !important; /* Full width */
+}

@@ -1,0 +1,52 @@
+#jumbotron {
+  background-image: url("/music-weather-pic.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#background-overlay {
+  background-color: #00000080;
+  padding: 1rem;
+}
+
+.form-label {
+  color: white;
+}
+
+#jumbotron .react-datepicker-wrapper {
+  width: 100%;
+}
+
+#jumbotron .date-input-left {
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+
+#jumbotron .date-input-right {
+  border-radius: 0 0.375rem 0.375rem 0;
+}
+
+#inputResultsNum {
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+#jumbotron .search-btn {
+  background: #f44336;
+  padding: 7px 12px;
+  border-radius: 0 0.375rem 0.375rem 0;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  #jumbotron .date-input-left,
+  #jumbotron .date-input-right,
+  #jumbotron .search-btn,
+  #inputResultsNum {
+    border-radius: 0.375rem;
+  }
+}

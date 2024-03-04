@@ -1,95 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import "./weather.css";
 
-const Weather = () => {
-  const [city, setCity] = useState(""); // State to store the city name input
-  const [weatherData, setWeatherData] = useState(null); // weather data fetched from the API
+const Weather = ({ city = "London" }) => {
+  const [weatherData, setWeatherData] = useState(null);
 
-  // API keys
-  const weatherAPI = "d80a5e97b418450696733535d1602cdf"; // OpenWeather map API
-  const geoCodingAPI = "084da7e553754a23b3ac4e462fa51e26"; //OpenCage Geocoding API
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      const apiKey = "d80a5e97b418450696733535d1602cdf";
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-  //   fetch weather data from OpenWeatherMap API
-  const fetchWeatherData = async (latitude, longitude) => {
-    try {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherAPI}&units=metric`
-      );
-      // Set the weather data in the state
-      setWeatherData(response.data);
-      console.log("Object: ", response.data);
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-    }
-  };
+      try {
+        const response = await axios.get(weatherUrl);
+        setWeatherData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
+    };
 
-  // Event handler for input change (city name)
-  const handleInputChange = (event) => {
-    setCity(event.target.value);
-  };
-  // Event handler for form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      // Fetching latitude and longitude using OpenCage Geocoding API
-      const cityResponse = await axios.get(
-        `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${geoCodingAPI}`
-      );
+    fetchWeatherData();
+  }, [city]);
 
-      // extracting latitude and longitude from the response
-      const { lat, lng } = cityResponse.data.results[0].geometry;
-      // Fetch weather data using latitude and longitude
-      fetchWeatherData(lat, lng);
-    } catch (error) {
-      console.error("Error fetching city data:", error);
-    }
+  const displayWeatherVideo = (parameter) => {
+    const videoMap = {
+      Clouds: { src: "./video/clouds.mp4", width: 40, height: 40 },
+      Thunderstorm: { src: "./video/thunderstrom.mp4", width: 25, height: 25 },
+      Drizzle: { src: "./video/drizzle.mp4", width: 25, height: 25 },
+      Rain: { src: "./video/rain.mp4", width: 25, height: 25 },
+      Snow: { src: "./video/snow.mp4", width: 25, height: 25 },
+      Clear: { src: "./video/clear.mp4", width: 25, height: 25 },
+      Tornado: { src: "./video/tornado.mp4", width: 25, height: 25 },
+      default: { src: "./video/foggy.mp4", width: 25, height: 25 },
+    };
+
+    const { src, width, height } = videoMap[parameter] || videoMap.default;
+
+    return (
+      <video width={width} height={height} autoPlay loop muted>
+        <source src={src} type="video/mp4" />
+      </video>
+    );
   };
 
   return (
-    <Card>
-      <CardContent>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Enter city name"
-            variant="outlined"
-            value={city}
-            onChange={handleInputChange}
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Get Weather
-          </Button>
-        </form>
-        {weatherData && (
-          <Card
-            variant="outlined"
-            style={{ width: "fit-content", marginTop: 20 }}
-          >
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Weather in {city}
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                Temperature: {weatherData.main.temp} °C
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                Feels like: {weatherData.main.feels_like} °C
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                Humidity: {weatherData.main.humidity} %
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                Wind Speed: {weatherData.wind.speed} m/s
-              </Typography>
-            </CardContent>
-          </Card>
-        )}
-      </CardContent>
-    </Card>
+    <>
+      <h5 className="text-dark-blue">Current Weather in {city}</h5>
+      <div className="temperature d-flex">
+        <p className="text-dark-blue fw-bold m-0">
+          {weatherData && displayWeatherVideo(weatherData?.weather[0]?.main)}
+        </p>
+        <p> {weatherData && Math.round(weatherData.main.temp)}</p>
+        <div className="video-wraper d-flex justify-content-center align-items-start">
+          <video width="25" height="25" autoPlay loop muted>
+            <source src="./video/celsius.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </>
   );
 };
 

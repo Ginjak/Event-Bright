@@ -1,18 +1,18 @@
 import "./navbar.css";
 import React from "react";
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <NavLink to="/" className="navbar-brand">
             <img src="/eventBright-logo.png" alt="" width="30" height="24" />
-          </a>
-          <a className="navbar-brand" href="#">
+          </NavLink>
+          <NavLink to="/" className="navbar-brand">
             EventBright
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -26,15 +26,15 @@ const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto">
-              <a className="nav-link active" aria-current="page" href="#">
+              <NavLink to="/" className="nav-link">
+                Home
+              </NavLink>
+              <NavLink to="/about" className="nav-link">
                 About
-              </a>
-              <a className="nav-link" href="#">
+              </NavLink>
+              <NavLink to="/contact" className="nav-link">
                 Contact
-              </a>
-              <a className="nav-link" href="#">
-                Weather
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>

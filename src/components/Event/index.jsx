@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./event.css";
-import { styled } from "@mui/material/styles";
+import currencyFormatter from "currency-formatter";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,108 +11,298 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Weather from "../Weather";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+function Event({ eventData, searchExecuted }) {
+  // State to track the currently expanded card's ID otherwise all opens at once
+  const [expandedId, setExpandedId] = useState(null);
 
-const Event = () => {
-  const [expanded, setExpanded] = useState(false);
+  // Adding currency symbol
+  function currencyDisplay(amount, currencyCode) {
+    const formattedAmount = currencyFormatter.format(amount, {
+      code: currencyCode,
+    });
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+    return formattedAmount;
+  }
+  // Handle card expand
+  const handleExpandClick = (id) => {
+    // Toggle expanded state
+    setExpandedId(expandedId === id ? null : id);
   };
 
+  // If search executed, but no information returned, display message with "Sorry... there are no events available"
+  if (
+    searchExecuted &&
+    (!eventData ||
+      !eventData._embedded ||
+      !eventData._embedded.events ||
+      eventData._embedded.events.length === 0)
+  ) {
+    return (
+      <>
+        {" "}
+        <div className="container-xxl pt-5">
+          <div className="no-events d-flex justify-content-center align-items-center">
+            <p>Sorry... there are no events available</p>
+          </div>
+          ;
+        </div>
+        ;
+      </>
+    );
+  }
+
+  // Checks if data exits and if not, return empty array
+  const events =
+    eventData && eventData._embedded ? eventData._embedded.events : [];
+
+  // Function to check for a large image from API with more then 1023px width and extract url for that image
+  function largeImage(images) {
+    for (const image of images) {
+      if (
+        image.hasOwnProperty("width") &&
+        typeof image.width === "number" &&
+        image.width > 1023
+      ) {
+        return image.url;
+      }
+    }
+    return null;
+  }
+
+  // Display cards API data
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            A
-          </Avatar>
-        }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/card-img.jpg"
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          More Details
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-            over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-            stirring occasionally until lightly browned, 6 to 8 minutes.
-            Transfer shrimp to a large plate and set aside, leaving chicken and
-            chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,
-            onion, salt and pepper, and cook, stirring often until thickened and
-            fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2
-            cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is
-            absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-            shrimp and mussels, tucking them down into the rice, and cook again
-            without stirring, until mussels have opened and rice is just tender,
-            5 to 7 minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+    <>
+      <div className="container-xxl py-5 position-relative">
+        <h2 className="text-white mb-3">Events</h2>
+        {/* Loops through array and creates a card for each */}
+        {events.map((event, index) => (
+          // Using MUI react component library together with Bootstrap 5
+          // DATA from Ticketmaster API is displayed
+          <Card key={index} sx={{ maxWidth: "100%", marginBottom: "30px" }}>
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{
+                    bgcolor: red[500],
+                    width: 75,
+                    height: 75,
+                  }}
+                  aria-label="event"
+                >
+                  <div className="d-flex flex-column align-items-center">
+                    {event.dates.start.localDate && (
+                      <p className="avatar-text mb-1 text-uppercase">
+                        {new Date(event.dates.start.localDate).toLocaleString(
+                          "default",
+                          { month: "short" }
+                        )}
+                      </p>
+                    )}
+                    {event.dates.start.localDate && (
+                      <p className="avatar-text m-0">
+                        {new Date(event.dates.start.localDate)
+                          .getDate()
+                          .toString()
+                          .padStart(2, "0")}
+                      </p>
+                    )}
+                  </div>
+                </Avatar>
+              }
+              title={
+                <div className="mui-header-content text-dark-blue">
+                  {event.name && (
+                    <h5 className="mui-header-title"> {event.name}</h5>
+                  )}
+                  <div className="venue-dates-wraper d-flex flex-column flex-md-row justify-content-between">
+                    <div className="city-venue-wraper d-flex">
+                      {event._embedded?.venues[0]?.city?.name && (
+                        <p className="venue-city mb-0 fw-bolder me-2">
+                          {event?._embedded?.venues[0]?.city?.name}
+                        </p>
+                      )}
+                      {event?._embedded?.venues[0]?.name && (
+                        <p className="venue-name mb-0 fw-bolder ">
+                          {event?._embedded?.venues[0]?.name}
+                        </p>
+                      )}
+                    </div>
+                    <div className="date-time-wraper d-flex me-5">
+                      {event.dates.start.localDate && (
+                        <p className="weekday  me-2">
+                          {new Date(event.dates.start.localDate).toLocaleString(
+                            "en-US",
+                            { weekday: "short" }
+                          )}
+                        </p>
+                      )}
+                      {event.dates.start.localTime && (
+                        <p>
+                          {event.dates.start.localTime
+                            .split(":")
+                            .slice(0, 2)
+                            .join(":")}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              }
+            />
+            <CardActions
+              disableSpacing
+              sx={{
+                marginTop: "-56px",
+                justifyContent: "flex-end",
+              }}
+            >
+              <IconButton
+                aria-label="show more"
+                onClick={() => handleExpandClick(index)}
+                sx={{
+                  transform: expandedId === index ? "rotate(180deg)" : "none",
+                }}
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            {/* Card expanded part with more API Data */}
+            {/* Data is displayed depending if it is avaible from API. If not avaible element won't get generated */}
+            <Collapse in={expandedId === index} timeout="auto" unmountOnExit>
+              <CardContent>
+                <div className="row">
+                  <div className="col-md-4">
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      image={largeImage(event.images)}
+                      alt={event.name}
+                    />
+                  </div>
+                  <div className="py-4 py-md-0 col-md-8 d-flex flex-column justify-content-between">
+                    <div className="bio-venue-wraper d-flex flex-column flex-md-row justify-content-between h-100 pb-3">
+                      <div className="show-bio-wraper d-flex flex-column justify-content-between">
+                        <div className="show-date-time d-flex">
+                          {event.dates.start.localDate && (
+                            <p className="show-date mb-0 me-3 text-dark-blue fw-bolder">
+                              {" "}
+                              {event.dates.start.localDate}
+                            </p>
+                          )}
+                          {event.dates.start.localTime && (
+                            <p className="show-time mb-0 text-dark-blue fw-bolder">
+                              {event.dates.start.localTime
+                                .split(":")
+                                .slice(0, 2)
+                                .join(":")}
+                            </p>
+                          )}
+                        </div>
+                        <div className="mt-2 mt-md-0 event-type d-flex">
+                          {event.classifications &&
+                            event?.classifications[0]?.genre?.name !==
+                              "Undefined" && (
+                              <p className="show-genre mb-0 btn-event me-2">
+                                {event?.classifications[0]?.genre?.name}
+                              </p>
+                            )}
+                          {event.classifications &&
+                            event.classifications.length > 0 && (
+                              <p className="show-segment mb-0 btn-event me-2">
+                                {event.classifications[0].segment.name}
+                              </p>
+                            )}
+                        </div>
+                      </div>
+                      <div className="mt-4 mt-md-0 venue-details-wraper text-dark-blue ">
+                        {event?._embedded?.venues[0]?.name && (
+                          <p className="text-md-end mb-0">
+                            {event?._embedded?.venues[0]?.name}
+                          </p>
+                        )}
+                        {event?._embedded?.venues[0]?.address && (
+                          <p className="text-md-end mb-0">
+                            {event?._embedded?.venues[0]?.address?.line1}
+                          </p>
+                        )}
+                        {event?._embedded?.venues[0]?.address?.line2 && (
+                          <p className="text-md-end mb-0">
+                            {event?._embedded?.venues[0]?.address?.line2}
+                          </p>
+                        )}
+                        {event?._embedded?.venues[0]?.postalCode && (
+                          <p className="text-md-end mb-0">
+                            {event?._embedded?.venues[0]?.postalCode}
+                          </p>
+                        )}
+                        {event?._embedded?.venues[0]?.city?.name && (
+                          <p className="text-md-end mb-0">
+                            {event?._embedded?.venues[0]?.city?.name}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="price-purchase-wraper d-flex flex-column flex-md-row justify-content-between justify-content-md-end">
+                      <div className="price-wraper d-flex mb-4 mb-md-0 me-4">
+                        {event.priceRanges && (
+                          <p className="price-from m-0 me-2 text-dark-blue ">
+                            From{" "}
+                            <span className="fw-bold ms-1 ">
+                              {/* Calling function with Currency and amout to display currecny symbol before amaunt */}
+                              {currencyDisplay(
+                                event.priceRanges[0].min,
+                                event.priceRanges[0].currency
+                              )}
+                            </span>
+                          </p>
+                        )}
+                        {event.priceRanges && (
+                          <p className="m-0 price-to text-dark-blue">
+                            To{" "}
+                            <span className="fw-bold ms-1">
+                              {/* Calling function with Currency and amout to display currecny symbol before amaunt */}
+                              {currencyDisplay(
+                                event.priceRanges[0].max,
+                                event.priceRanges[0].currency
+                              )}
+                            </span>
+                          </p>
+                        )}
+                      </div>
+                      {event.url && (
+                        <a
+                          href={event.url}
+                          target="_blank"
+                          className="btn-tickets text-center"
+                        >
+                          Get Tickets!
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <Typography paragraph sx={{ marginTop: "20px" }}>
+                  {event.pleaseNote && (
+                    <>
+                      <span className="event-note-text">
+                        <i className="fa-solid fa-circle-exclamation me-2"></i>
+                        {event.pleaseNote}
+                      </span>
+                    </>
+                  )}
+                </Typography>
+                {/* Adding Weather component that takes a prop as City from Ticket master API and generates data with weather information and some animations*/}
+                <Weather city={event?._embedded?.venues[0]?.city?.name} />
+              </CardContent>
+            </Collapse>
+          </Card>
+        ))}
+      </div>
+    </>
   );
-};
+}
 
 export default Event;
