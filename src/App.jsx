@@ -16,12 +16,6 @@ function App() {
         <Header>
           <Navbar />
         </Header>
-        <Hero />
-        <Searchbar />
-        <Eventcard />
-        <Event />
-        <About />
-        <Contactform />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
