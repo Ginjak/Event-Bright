@@ -1,11 +1,11 @@
 #jumbo-mini {
-    background-image: url("/public/artsyEvent.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  /* background-image: url("/public/artsyEvent.jpg"); */
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
 }
 
 #mini-overlay {
-    background-color: #00000080;
-    padding: 1rem;
+  background-color: #00000080;
+  padding: 1rem;
 }

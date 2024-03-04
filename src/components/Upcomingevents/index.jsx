@@ -4,22 +4,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Upcomingevents = () => {
+  // useStates for events and selected category
   const [events, setEvents] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("sports"); // Default category is drama
+  // Default category is sports
+  const [selectedCategory, setSelectedCategory] = useState("sports");
 
+  // Function to remove duplicate events from generated array
   function removeDuplicates(arr) {
-    const uniqueNames = new Set(); // Using a Set to store unique names
+    // Using a Set to store unique names
+    const uniqueNames = new Set();
 
     return arr.filter((element) => {
       // Check if the name is unique
       if (!uniqueNames.has(element.name)) {
-        uniqueNames.add(element.name); // Add the name to the set of unique names
-        return true; // Keep this element in the filtered array
+        // Add the name to the set of unique names
+        uniqueNames.add(element.name);
+        // Keep this element in the filtered array
+        return true;
       }
-      return false; // Discard this element from the filtered array
+      // Discard this element from the filtered array
+      return false;
     });
   }
 
+  // Function to dislay currency symbol like £ when currency is GBP
   function currencyDisplay(amount, currencyCode) {
     const formattedAmount = currencyFormatter.format(amount, {
       code: currencyCode,
@@ -27,24 +35,29 @@ const Upcomingevents = () => {
 
     return formattedAmount;
   }
+
+  // Function to loop through array and get url for the image in the array with a width property grater then 400
   function smallImage(images) {
     // Iterate through the images array
     for (const image of images) {
-      // Check if the image has a "width" property greater than 1023
+      // Check if the image has a "width" property greater than 400
       if (
         image.hasOwnProperty("width") &&
         typeof image.width === "number" &&
         image.width > 400
       ) {
-        return image.url; // Return the URL of the first image that meets the condition
+        // Return the URL of the first image that meets the condition
+        return image.url;
       }
     }
-    return null; // Return null if no image with width > 1023 is found
+    // Return null if no image with width > 400 is found
+    return null;
   }
 
+  // Removing duplicate events from API data and storing it in a new viarible
   const arrWithUniqueEvents = removeDuplicates(events);
-  console.log(arrWithUniqueEvents);
 
+  // Fetching data from API, country is set to GB and category depending on selected button
   useEffect(() => {
     async function fetchEvents(category) {
       const apiKey = "HjQcNIEkdwsQswwBQhfE1PO0smAoxyu4";
@@ -53,55 +66,62 @@ const Upcomingevents = () => {
 
       try {
         const response = await axios.get(url);
-        console.log(response.data._embedded.events); // Log the events array
+        // Setting events to useState
         setEvents(response.data._embedded.events);
       } catch (error) {
         console.error("Error fetching upcoming shows:", error);
       }
     }
-
+    // Running a function depeneding on which button is presses (sports, film etc.). Value stored in useState selectedCategory
     fetchEvents(selectedCategory);
   }, [selectedCategory]); // Fetch events whenever selectedCategory changes
 
+  // Updating selectedCategory state to sports, music, film etc..
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-
+  // Rendering UI with results
   return (
     <>
       <div className="upcoming-events container-xxl py-5 position-relative">
         <h2 className="text-white">Upcoming events</h2>
         <div className="buttons-wraper my-3">
+          {/* useState updated on a button click */}
           <button
             className="events-button"
             onClick={() => handleCategoryClick("comedy")}
           >
             Comedy
           </button>
+          {/* useState updated on a button click */}
           <button
             className="events-button"
             onClick={() => handleCategoryClick("music")}
           >
             Music
           </button>
+          {/* useState updated on a button click */}
           <button
             className="events-button"
             onClick={() => handleCategoryClick("sports")}
           >
             Sports
           </button>
+          {/* useState updated on a button click */}
           <button
             className="events-button"
             onClick={() => handleCategoryClick("family")}
           >
             Family
           </button>
+          {/* useState updated on a button click */}
           <button
             className="events-button"
             onClick={() => handleCategoryClick("film")}
           >
             Film
           </button>
+          {/* useState updated on a button click */}
           <button
             className="events-button"
             onClick={() => handleCategoryClick("theatre")}
@@ -109,9 +129,12 @@ const Upcomingevents = () => {
             Theatre
           </button>
         </div>
+        {/* If aaray with unique events has more then 0 events it will generate a new card for every event. Will display maximum of 12 events */}
         {arrWithUniqueEvents.length > 0 ? (
           <div className="upcoming-events-wraper row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {/* Maping through array */}
             {arrWithUniqueEvents.slice(0, 12).map((event, index) => (
+              // Creating a card with event details
               <div className="col" key={event.id}>
                 <div className="card bg-dark text-white h-100 position-relative">
                   <img
@@ -175,6 +198,7 @@ const Upcomingevents = () => {
             ))}
           </div>
         ) : (
+          // IF events array is empty, message with No Upcoming events will come up, but shouldn't happen
           <div>No upcoming events</div>
         )}
       </div>

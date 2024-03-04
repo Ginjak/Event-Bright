@@ -1,11 +1,12 @@
 import "./contact.css";
 import React, { useState } from "react";
 import Contactform from "../../components/Contactform";
+import Hero from "../../components/Hero";
 function Contact() {
   return (
     <>
+      <Hero herBg={"/artsyEvent.jpg"} title={"Contact Us"} />
       <Contactform />
-      <h1>Contact page</h1>
     </>
   );
 }
