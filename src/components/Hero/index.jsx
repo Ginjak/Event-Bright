@@ -1,7 +1,7 @@
 import "./hero.css";
 import React, { useState } from "react";
 
-function Hero({ herBg, title }) {
+function Hero({ herBg, title, par }) {
   return (
     <>
       <div
@@ -12,9 +12,7 @@ function Hero({ herBg, title }) {
         <div id="mini-overlay" className="container-fluid ms-0">
           <div className="container-fluid">
             <h1 className="display-4 text-white">{title}</h1>
-            {/* <p className="lead text-white mb-5">
-              What's on, where, and how the weather is there!
-            </p> */}
+            <p>{par}</p>
           </div>
         </div>
       </div>

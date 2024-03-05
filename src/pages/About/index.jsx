@@ -119,7 +119,11 @@ function About() {
   return (
     <React.Fragment>
       <div className="about-page">
-        <Hero herBg={"/artsyEvent.jpg"} title={"About Us"} />
+        <Hero
+          herBg={"/artsyEvent.jpg"}
+          title={"About Us"}
+          par={"random text"}
+        />
         {/* <h1>About page</h1> */}
         <div className="text-style p-5 mb-3 mt-2">
           Once upon a time, in a cozy corner of the UK, there was a merry band

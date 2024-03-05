@@ -49,7 +49,6 @@ function Home() {
   const fetchEvents = async (startDate, endDate) => {
     const API_KEY = "HjQcNIEkdwsQswwBQhfE1PO0smAoxyu4";
     const apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json";
-
     try {
       const response = await axios.get(apiUrl, {
         params: {
@@ -63,6 +62,7 @@ function Home() {
       });
       //Infrmation from API passed to Events state
       setEvents(response.data);
+      console.log(response.data);
       // Set searchExecuted to true after search button is clicked
       setSearchExecuted(true);
     } catch (error) {
