@@ -4,7 +4,7 @@ import Hero from "../../components/Hero";
 function Contact() {
   return (
     <>
-      <Hero herBg={"/artsyEvent.jpg"} title={"Contact Us"} />
+      <Hero herBg={"/contact-hero.jpg"} title={"Contact Us"} />
       <Contactform />
     </>
   );
