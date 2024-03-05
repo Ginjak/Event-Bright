@@ -12,10 +12,9 @@ const Contactform = () => {
                 <strong>Address</strong>
               </h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
-                aliquam quo. Error sunt, molestiae eos minima aliquid quos
-                cumque ea corporis commodi itaque rem, dolores inventore
-                repudiandae dicta impedit. Doloribus!
+                123 Fake St
+                London
+                EVE NT5
               </p>
               <h3>
                 <strong>Email</strong>

@@ -1,11 +1,13 @@
-.about-page {
+/* .about-page {
     background-color: var(--dark);
-  }
+  } */
 
   .text-style {
     color: whitesmoke; 
     font-size: 16px; 
     line-height: 1.5;
+    background-color: var(--dark);
+
     }
 h1 {
     color: whitesmoke;

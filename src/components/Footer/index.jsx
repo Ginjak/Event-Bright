@@ -8,7 +8,7 @@ import "./footer.css";
 const Footer = () => {
   return (
     <>
-      <nav className="navbar bg-body-tertiary bg-image bg-opacity">
+      <nav className="navbar bg-body-tertiary bg-image bg-opacity mt-3">
         <div className="p-3">
           <div className="container-fluid p-2">
             <a className="navbar-brand logo" href="#">
