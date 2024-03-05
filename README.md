@@ -77,7 +77,7 @@ Here are the GitHub accounts of all the members of our team:
 
 ## Deployment
 
-The application is deployed on Netlify. You can access it [here](https://deploy-preview-33--eventbright.netlify.app/).
+The application is deployed on Netlify. You can access it [here](https://eventbright.netlify.app/).
 
 ## Application Repository
 
