@@ -120,13 +120,13 @@ function About() {
     <React.Fragment>
       <div className="about-page">
         <Hero herBg={"/artsyEvent.jpg"} title={"About Us"} />
-        <h1>About page</h1>
-        <div className="text-style">
+        {/* <h1>About page</h1> */}
+        <div className="text-style p-5 mb-3 mt-2">
           Once upon a time, in a cozy corner of the UK, there was a merry band
           of six developers fresh out of a front-end bootcamp. Their names were
-          Gintars, Serina, Adrian, Daria, Tomasz, and Grace. They were as
+          Gintaras, Serina, Adrian, Daria, Tomasz, and Grace. They were as
           diverse as a bag of jellybeans, each with their own quirks and
-          talents. Gintars, with his love for all things design-related, could
+          talents. Gintaras, with his love for all things design-related, could
           make a webpage look snazzier than a penguin in a tuxedo. Serina, the
           coding whiz, could whip up JavaScript like it was nobody's business.
           Adrian was the king of CSS, styling web pages with the finesse of a
@@ -139,7 +139,7 @@ function About() {
           the team stumbled upon the concept of a website like EventBright, but
           with a twist – integrated weather information. The idea sparked like a
           firecracker on Bonfire Night, and the team dove headfirst into the
-          project. Gintars sketched out dazzling designs that made the website
+          project. Gintaras sketched out dazzling designs that made the website
           pop like fireworks in the sky. Serina coded like a mad scientist,
           weaving JavaScript spells that brought the website to life. Adrian
           sprinkled CSS magic like fairy dust, making every element sparkle and
