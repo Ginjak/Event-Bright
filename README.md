@@ -1,4 +1,7 @@
 # Event-Bright
+What's on, where, and how the weather is there!
+
+## Description
 
 Event-Bright is a web application built with HTML, CSS, JavaScript, React, and Bootstrap. It fetches data from the Ticketmaster API and Weather API, and displays it in a user-friendly format. The application is responsive and works well on all devices.
 
@@ -25,10 +28,12 @@ Here are some screenshots of the application:
 - Deployment in [Netlify](https://www.netlify.com/)
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
-- Feature 4
+- Search events
+- See upcoming events by category
+- View event details
+- View current weather in event location
+- Get tickets
+- Contact us 
 
 
 ## Setup
@@ -42,19 +47,22 @@ To run this project locally, follow these steps:
 
 ## Usage
 
-Describe how to use your application here.
+Go to the EventBright homepage and peruse upcoming events, or input parameters in the search fields to get results from different dates and locations. Click the dropdown arrow on the right of each event listing to see more details, including the current weather forecast and a link to buy tickets from.
 
 ## Future Development
 
 In the future, we plan to add more features to this application, including:
 
-- Future feature 1
-- Future feature 2
-- Future feature 3
+- Add user's current location
+- Display events from user's current location
+- Choose/specify country
+- Save user's search history
+- Have user accounts/logins to save events
+- Add 5-day forecasts to event locations
 
 ## Collaboration
 
-This project was a collaborative effort by Team Name. We used Git and GitHub for version control and collaboration.
+This project was a collaborative effort by Team Bright. We used Git and GitHub for version control and collaboration.
 
 ## Team Members
 
