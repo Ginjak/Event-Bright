@@ -1,3 +1,24 @@
-.formButton {
-    background-color: #0275d8 !important;
+.contact-details {
+  background: var(--dark);
+}
+.mail-link {
+  transition: all 0.2s ease-in-out !important;
+}
+.mail-link:hover {
+  color: var(--primary-color) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+.btn-contact {
+  border-radius: 6px;
+  background: var(--primary-color);
+  color: var(--dark);
+  text-transform: uppercase;
+  border: none;
+  padding: 6px 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-contact:hover {
+  transition: all 0.2s ease-in-out;
+  background: #c3def1;
 }
