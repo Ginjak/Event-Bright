@@ -1,3 +1,6 @@
+.team-wraper .mail-link {
+  color: var(--dark) !important;
+}
 .team-wraper .mail-link:hover {
   color: #324f72 !important;
 }

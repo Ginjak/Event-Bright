@@ -51,9 +51,9 @@
 }
 
 .btn-tickets:hover {
-  background: var(--primary-color);
+  background: #9bb8cd;
   color: var(--dark);
-  box-shadow: 0 0 3px var(--primary-color);
+  box-shadow: 0 0 3px #9bb8cd;
 }
 .text-dark-blue {
   color: var(--dark);
