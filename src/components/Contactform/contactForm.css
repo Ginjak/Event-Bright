@@ -5,12 +5,12 @@
   transition: all 0.2s ease-in-out !important;
 }
 .mail-link:hover {
-  color: var(--primary-color) !important;
+  color: #9bb8cd !important;
   transition: all 0.2s ease-in-out !important;
 }
 .btn-contact {
   border-radius: 6px;
-  background: var(--primary-color);
+  background: #9bb8cd;
   color: var(--dark);
   text-transform: uppercase;
   border: none;

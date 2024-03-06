@@ -40,7 +40,7 @@ function ImageAvatars() {
             <Card
               key={member.id}
               style={{
-                background: "var(--link-hover)",
+                background: "#fffcfcc8",
                 minWidth: "300px",
               }}
               className="team-card"
