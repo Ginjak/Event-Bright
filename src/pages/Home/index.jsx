@@ -62,7 +62,6 @@ function Home() {
       });
       //Infrmation from API passed to Events state
       setEvents(response.data);
-      console.log(response.data);
       // Set searchExecuted to true after search button is clicked
       setSearchExecuted(true);
     } catch (error) {

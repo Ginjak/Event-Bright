@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import Team from "../../assets/data/team.json";
 import "./imageavatars.css";
 
+// Displaying cards from team.json data file, loops through data
 function ImageAvatars() {
   return (
     <>
@@ -34,6 +35,7 @@ function ImageAvatars() {
             margin: "auto",
           }}
         >
+          {/* Loop through team.json and displays each member (name, avatar image and social icons with links if provided) */}
           {Team.team.map((member) => (
             <Card
               key={member.id}

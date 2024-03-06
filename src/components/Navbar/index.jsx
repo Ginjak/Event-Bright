@@ -14,7 +14,7 @@ const Navbar = () => {
             EventBright
           </NavLink>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler collapsed"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup"
@@ -22,17 +22,19 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="toggler-icon top-bar"></span>
+            <span className="toggler-icon middle-bar"></span>
+            <span className="toggler-icon bottom-bar"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto">
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/" className="nav-link text-center">
                 Home
               </NavLink>
-              <NavLink to="/about" className="nav-link">
+              <NavLink to="/about" className="nav-link text-center">
                 About
               </NavLink>
-              <NavLink to="/contact" className="nav-link">
+              <NavLink to="/contact" className="nav-link text-center">
                 Contact
               </NavLink>
             </div>
