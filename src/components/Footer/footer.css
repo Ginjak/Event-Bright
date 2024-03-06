@@ -12,11 +12,6 @@
   background-color: var(--backgorund-color) !important;
 }
 
-/* text */
-* {
-  color: var(--light);
-}
-
 /* wrapping */
 nav {
   display: flex;
@@ -29,6 +24,7 @@ nav {
 .pages-container {
   display: flex;
   align-items: center;
+  color: var(--light);
 }
 
 .socials-container {
@@ -56,9 +52,12 @@ nav {
 }
 
 /* logo & title */
-.logo span {
+.title {
+  color: var(--light);
   margin-left: 5%;
 }
+
+
 
 /* link decorations */
 a {

@@ -12,7 +12,7 @@ const Footer = () => {
       <nav className="navbar bg-body-tertiary bg-image">
         <div className="p-3">
           <div className="container-fluid p-2">
-            <NavLink to="/" className="navbar-brand logo">
+            <NavLink to="/" className="navbar-brand">
               <img
                 src="/eventBright-logo.png"
                 alt="Logo"
@@ -20,7 +20,7 @@ const Footer = () => {
                 height="24"
                 className="d-inline-block align-text-top"
               />
-              <span className="">EventBright</span>
+              <span className="title">EventBright</span>
             </NavLink>
           </div>
         </div>
