@@ -104,7 +104,7 @@ a {
   }
 }
 
-@media screen and (max-width: 250px) {
+@media screen and (max-width: 375px) {
   .socials-container,
   .pages-container {
     display: none !important;
