@@ -9,10 +9,6 @@
 
 /* background */
 .bg-image {
-  /* background-image: url(/background-final-project-coding-v2\ -\ Copy.png) !important; */
-  /* background-image: url(/public/footer-ai-img-cropped-edited.png) !important; */
-  /* background-repeat: no-repeat !important; */
-  /* background-size: cover !important; */
   background-color: var(--backgorund-color) !important;
 }
 
