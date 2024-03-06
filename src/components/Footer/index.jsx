@@ -9,7 +9,7 @@ import "./footer.css";
 const Footer = () => {
   return (
     <>
-      <nav className="navbar bg-body-tertiary bg-image">
+      <nav className="navbar nav bg-body-tertiary bg-image">
         <div className="p-3">
           <div className="container-fluid p-2">
             <NavLink to="/" className="navbar-brand">

@@ -13,7 +13,7 @@
 }
 
 /* wrapping */
-nav {
+.nav {
   display: flex;
   flex-wrap: wrap;
   border: var(--dark) solid 5px;
@@ -81,7 +81,7 @@ a {
 
 /* positioning & borders */
 @media screen and (max-width: 773px) {
-  nav {
+  .nav {
     align-items: center !important;
     justify-content: center !important;
   }
