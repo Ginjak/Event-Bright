@@ -9,10 +9,10 @@ import "./footer.css";
 const Footer = () => {
   return (
     <>
-      <nav className="navbar bg-body-tertiary bg-image bg-opacity mt-3">
+      <nav className="navbar nav bg-body-tertiary bg-image">
         <div className="p-3">
           <div className="container-fluid p-2">
-            <NavLink to="/" className="navbar-brand logo">
+            <NavLink to="/" className="navbar-brand">
               <img
                 src="/eventBright-logo.png"
                 alt="Logo"
@@ -20,28 +20,28 @@ const Footer = () => {
                 height="24"
                 className="d-inline-block align-text-top"
               />
-              <span className="">EventBright</span>
+              <span className="title">EventBright</span>
             </NavLink>
           </div>
         </div>
         {/* social medias >> */}
         <div className="socials-container">
-          <span className="fs-6 p-3 ms-5 fw-bold">Future links</span>
+          <span className="fs-6 p-3 fw-bold">Future links</span>
           <div className="socials-list">
             <NavLink to="https://www.instagram.com/" target="_blank">
-              <InstagramIcon fontSize="large" className="link icons spacing" />
+              <InstagramIcon fontSize="large" className="link spacing" />
             </NavLink>
             <NavLink to="https://www.facebook.com/" target="_blank">
-              <FacebookIcon fontSize="large" className="link icons spacing" />
+              <FacebookIcon fontSize="large" className="link spacing" />
             </NavLink>
             <NavLink to="https://www.youtube.com/" target="_blank">
-              <YouTubeIcon fontSize="large" className="link icons spacing" />
+              <YouTubeIcon fontSize="large" className="link spacing" />
             </NavLink>
             <NavLink
               to="https://github.com/Ginjak/Event-Bright"
               target="_blank"
             >
-              <GitHubIcon fontSize="large" className="link icons spacing" />
+              <GitHubIcon fontSize="large" className="link spacing m-right" />
             </NavLink>
           </div>
         </div>
@@ -50,7 +50,7 @@ const Footer = () => {
           <NavLink to="/about" className="link spacing">
             About
           </NavLink>
-          <NavLink to="/contact" className="link spacing">
+          <NavLink to="/contact" className="link spacing m-right">
             Contact
           </NavLink>
         </div>

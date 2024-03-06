@@ -1,22 +1,19 @@
 :root {
-  --primary-color: #9bb8cd;
-  --secondary-color: #fff9fd;
-  --third-color: #eec759;
-  --link-hover: #fffcfcc8;
+  --primary-color: #fff9fd;
+  --light: white;
   --dark: #17283d;
+  --link-hover: #ff32329d;
+  --backgorund-color: #f44336;
+  --footer-lines: #17283da6;
 }
 
 /* background */
 .bg-image {
-  background-image: url(/background-final-project-coding-v2\ -\ Copy.png) !important;
-}
-
-.bg-opacity {
-  background-color: var(--third-color) !important;
+  background-color: var(--backgorund-color) !important;
 }
 
 /* wrapping */
-nav {
+.nav {
   display: flex;
   flex-wrap: wrap;
   border: var(--dark) solid 5px;
@@ -27,6 +24,11 @@ nav {
 .pages-container {
   display: flex;
   align-items: center;
+  color: var(--light);
+}
+
+.socials-container {
+  margin-right: 6px;
 }
 
 .pages-container {
@@ -34,7 +36,7 @@ nav {
 }
 
 .date-container {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,18 +52,17 @@ nav {
 }
 
 /* logo & title */
-.logo {
-  color: var(--dark) !important;
-}
-
-.logo span {
+.title {
+  color: var(--light);
   margin-left: 5%;
 }
+
+
 
 /* link decorations */
 a {
   text-decoration: none;
-  color: var(--dark);
+  color: var(--light);
 }
 
 .link:hover {
@@ -70,17 +71,46 @@ a {
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.4) !important;
 }
 
+/* date*/
+.date-container p {
+  margin-top: 16px;
+  color: var(--dark) !important;
+}
+
 /* media queries */
-@media screen and (max-width: 376px) {
-  nav {
-    align-items: center;
-    justify-content: center;
+
+/* positioning & borders */
+@media screen and (max-width: 773px) {
+  .nav {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .socials-container {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .pages-container {
+    border-top: 2px solid var(--footer-lines);
+  }
+  .pages-container .m-right {
+    margin-right: 14px;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 528px) {
+  .socials-container {
+    border-top: 2px solid var(--footer-lines);
+    padding: 2%;
+  }
+  .socials-container .m-right {
+    margin-right: 14px;
+  }
+}
+
+/* display limit of content */
+@media screen and (max-width: 375px) {
   .socials-container,
   .pages-container {
-    position: fixed;
+    display: none !important;
   }
 }
