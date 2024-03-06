@@ -6,7 +6,6 @@
       "avatar": "/gin.jpeg",
       "social": {
         "linkedin": "https://www.linkedin.com/in/gintaras-jakimavicius-766a5151/",
-        "twitter": "https://twitter.com/",
         "github": "https://github.com/Ginjak",
         "web": "https://gjwebdev.co.uk/"
       }
@@ -14,62 +13,43 @@
     {
       "id": 2,
       "name": "Serina",
-      "avatar": "https://example.com/avatar/john.jpg",
+      "avatar": "/serina.jpeg",
       "social": {
-        "linkedin": "https://www.linkedin.com/in/johndoe",
-        "twitter": "https://twitter.com/johndoe",
-        "github": "https://twitter.com/johndoe",
-        "youtube": "https://twitter.com/johndoe",
-        "web": "https://twitter.com/johndoe"
+        "linkedin": "https://www.linkedin.com/in/serina-undefined-6bbbb42a4/",
+        "github": "https://github.com/blooshroo",
+        "web": "https://blooshroo.github.io/Bootstrap-Portfolio/"
       }
     },
     {
       "id": 3,
       "name": "Adrian",
-      "avatar": "https://example.com/avatar/john.jpg",
+      "avatar": "/adrian.jpeg",
       "social": {
-        "linkedin": "https://www.linkedin.com/in/johndoe",
-        "twitter": "https://twitter.com/johndoe",
-        "github": "https://twitter.com/johndoe",
-        "youtube": "https://twitter.com/johndoe",
-        "web": "https://twitter.com/johndoe"
+        "linkedin": "https://www.linkedin.com/in/adrian-tutuianu/",
+        "github": "https://github.com/Adriantutuianu",
+        "web": "https://adriantut.dev"
       }
     },
     {
       "id": 4,
       "name": "Daria",
-      "avatar": "https://example.com/avatar/john.jpg",
-      "social": {
-        "linkedin": "https://www.linkedin.com/in/johndoe",
-        "twitter": "https://twitter.com/johndoe",
-        "github": "https://twitter.com/johndoe",
-        "youtube": "https://twitter.com/johndoe",
-        "web": "https://twitter.com/johndoe"
-      }
+      "avatar": "/daria.jpeg",
+      "social": {}
     },
     {
       "id": 5,
       "name": "Tomasz",
-      "avatar": "https://example.com/avatar/john.jpg",
+      "avatar": "/TomDud.jpg",
       "social": {
-        "linkedin": "https://www.linkedin.com/in/johndoe",
-        "twitter": "https://twitter.com/johndoe",
-        "github": "https://twitter.com/johndoe",
-        "youtube": "https://twitter.com/johndoe",
-        "web": "https://twitter.com/johndoe"
+        "linkedin": "https://www.linkedin.com/in/tomasz-du/",
+        "github": "https://github.com/dudi62"
       }
     },
     {
       "id": 6,
       "name": "Grace",
-      "avatar": "https://example.com/avatar/john.jpg",
-      "social": {
-        "linkedin": "https://www.linkedin.com/in/johndoe",
-        "twitter": "https://twitter.com/johndoe",
-        "github": "https://twitter.com/johndoe",
-        "youtube": "https://twitter.com/johndoe",
-        "web": "https://twitter.com/johndoe"
-      }
+      "avatar": "/grace.png",
+      "social": {}
     }
   ]
 }
