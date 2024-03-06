@@ -37,13 +37,13 @@ const Contactform = () => {
                 <NavLink to="https://www.facebook.com/" target="_blank">
                   <FacebookIcon
                     fontSize="large"
-                    className=" icons spacing text-white"
+                    className=" icons spacing text-white mail-link"
                   />
                 </NavLink>
                 <NavLink to="https://www.youtube.com/" target="_blank">
                   <YouTubeIcon
                     fontSize="large"
-                    className=" icons spacing text-white"
+                    className=" icons spacing text-white mail-link"
                   />
                 </NavLink>
                 <NavLink
@@ -52,7 +52,7 @@ const Contactform = () => {
                 >
                   <GitHubIcon
                     fontSize="large"
-                    className=" icons spacing text-white"
+                    className=" icons spacing text-white mail-link"
                   />
                 </NavLink>
               </div>
