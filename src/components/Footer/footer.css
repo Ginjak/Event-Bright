@@ -1,18 +1,24 @@
 :root {
-  --primary-color: #9bb8cd;
-  --secondary-color: #fff9fd;
-  --third-color: #eec759;
-  --link-hover: #fffcfcc8;
+  --primary-color: #fff9fd;
+  --light: white;
   --dark: #17283d;
+  /* --link-hover: #fffcfcc8; */
+  --link-hover: #ff32329d;
+  --backgorund-color: #f44336;
 }
 
 /* background */
 .bg-image {
-  background-image: url(/background-final-project-coding-v2\ -\ Copy.png) !important;
+  /* background-image: url(/background-final-project-coding-v2\ -\ Copy.png) !important; */
+  /* background-image: url(/public/footer-ai-img-cropped-edited.png) !important; */
+  /* background-repeat: no-repeat !important; */
+  /* background-size: cover !important; */
+  background-color: var(--backgorund-color) !important;
 }
 
-.bg-opacity {
-  background-color: var(--third-color) !important;
+/* text */
+* {
+  color: var(--light);
 }
 
 /* wrapping */
@@ -34,7 +40,7 @@ nav {
 }
 
 .date-container {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,6 +49,10 @@ nav {
   border-top: hidden;
 }
 
+/* .socials-list {
+  padding: 16px;
+} */
+
 /* media icons */
 .spacing {
   margin: 5px;
@@ -50,10 +60,6 @@ nav {
 }
 
 /* logo & title */
-.logo {
-  color: var(--dark) !important;
-}
-
 .logo span {
   margin-left: 5%;
 }
@@ -61,7 +67,7 @@ nav {
 /* link decorations */
 a {
   text-decoration: none;
-  color: var(--dark);
+  color: var(--light);
 }
 
 .link:hover {
@@ -70,17 +76,16 @@ a {
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* media queries */
-@media screen and (max-width: 376px) {
-  nav {
-    align-items: center;
-    justify-content: center;
-  }
+/* date*/
+.date-container p {
+  margin-top: 16px;
+  color: var(--dark) !important;
 }
 
-@media screen and (max-width: 900px) {
-  .socials-container,
-  .pages-container {
-    position: fixed;
+/* media queries */
+@media screen and (max-width: 766px) {
+  nav {
+    align-items: center !important;
+    justify-content: center !important;
   }
 }

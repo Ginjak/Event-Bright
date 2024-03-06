@@ -9,7 +9,7 @@ import "./footer.css";
 const Footer = () => {
   return (
     <>
-      <nav className="navbar bg-body-tertiary bg-image bg-opacity mt-3">
+      <nav className="navbar bg-body-tertiary bg-image">
         <div className="p-3">
           <div className="container-fluid p-2">
             <NavLink to="/" className="navbar-brand logo">
@@ -26,22 +26,22 @@ const Footer = () => {
         </div>
         {/* social medias >> */}
         <div className="socials-container">
-          <span className="fs-6 p-3 ms-5 fw-bold">Future links</span>
-          <div className="socials-list">
+          <span className="fs-6 p-3 fw-bold">Future links</span>
+          <div className="socials-list p-3">
             <NavLink to="https://www.instagram.com/" target="_blank">
-              <InstagramIcon fontSize="large" className="link icons spacing" />
+              <InstagramIcon fontSize="large" className="link spacing" />
             </NavLink>
             <NavLink to="https://www.facebook.com/" target="_blank">
-              <FacebookIcon fontSize="large" className="link icons spacing" />
+              <FacebookIcon fontSize="large" className="link spacing" />
             </NavLink>
             <NavLink to="https://www.youtube.com/" target="_blank">
-              <YouTubeIcon fontSize="large" className="link icons spacing" />
+              <YouTubeIcon fontSize="large" className="link spacing" />
             </NavLink>
             <NavLink
               to="https://github.com/Ginjak/Event-Bright"
               target="_blank"
             >
-              <GitHubIcon fontSize="large" className="link icons spacing" />
+              <GitHubIcon fontSize="large" className="link spacing" />
             </NavLink>
           </div>
         </div>
