@@ -6,11 +6,11 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import "./contactForm.css";
 
+// Contact form section with two columns
 const Contactform = () => {
   return (
     <>
       <section className="contact-details text-white py-5 px-3">
-        {/* <div className="p-5 mb-4 rounded-3"> */}
         <div className="container-xxl">
           <div className="row">
             <div className="col-md-6">
@@ -57,10 +57,8 @@ const Contactform = () => {
                 </NavLink>
               </div>
             </div>
-
             <div className="mt-5 mt-md-0 col-md-6">
               <div className="contact-form">
-                {/* <h2>Contact Us</h2> */}
                 <form>
                   <div className="form-group">
                     <label className="fw-bold" htmlFor="name">
@@ -126,7 +124,6 @@ const Contactform = () => {
             </div>
           </div>
         </div>
-        {/* </div> */}
       </section>
     </>
   );

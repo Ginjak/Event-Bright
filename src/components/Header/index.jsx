@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
-// import Navbar from "../Navbar";
+import React from "react";
 
+// Header with children inside (usually Navbar only)
 function Header({ children }) {
   return (
     <>

@@ -8,12 +8,12 @@ function About() {
     <>
       <React.Fragment>
         <div className="about-page">
+          {/* Importing Hero component with parameters */}
           <Hero
             herBg={"/artsyEvent.jpg"}
             title={"About Us"}
             par={"random text"}
           />
-          {/* <h1>About page</h1> */}
           <div className="text-white p-5">
             <p>
               Once upon a time, in a cozy corner of the UK, there was a merry
@@ -73,6 +73,7 @@ function About() {
             </p>
           </div>
         </div>
+        {/* Importing ImageAvatars component with team members */}
         <ImageAvatars />
       </React.Fragment>
     </>
