@@ -1,5 +1,4 @@
 import "./contact.css";
-import React, { useState } from "react";
 import Contactform from "../../components/Contactform";
 import Hero from "../../components/Hero";
 function Contact() {

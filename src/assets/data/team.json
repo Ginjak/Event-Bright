@@ -1,0 +1,75 @@
+{
+  "team": [
+    {
+      "id": 1,
+      "name": "Gintaras",
+      "avatar": "/gin.jpeg",
+      "social": {
+        "linkedin": "https://www.linkedin.com/in/gintaras-jakimavicius-766a5151/",
+        "twitter": "https://twitter.com/",
+        "github": "https://github.com/Ginjak",
+        "web": "https://gjwebdev.co.uk/"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Serina",
+      "avatar": "https://example.com/avatar/john.jpg",
+      "social": {
+        "linkedin": "https://www.linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe",
+        "github": "https://twitter.com/johndoe",
+        "youtube": "https://twitter.com/johndoe",
+        "web": "https://twitter.com/johndoe"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Adrian",
+      "avatar": "https://example.com/avatar/john.jpg",
+      "social": {
+        "linkedin": "https://www.linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe",
+        "github": "https://twitter.com/johndoe",
+        "youtube": "https://twitter.com/johndoe",
+        "web": "https://twitter.com/johndoe"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Daria",
+      "avatar": "https://example.com/avatar/john.jpg",
+      "social": {
+        "linkedin": "https://www.linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe",
+        "github": "https://twitter.com/johndoe",
+        "youtube": "https://twitter.com/johndoe",
+        "web": "https://twitter.com/johndoe"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Tomasz",
+      "avatar": "https://example.com/avatar/john.jpg",
+      "social": {
+        "linkedin": "https://www.linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe",
+        "github": "https://twitter.com/johndoe",
+        "youtube": "https://twitter.com/johndoe",
+        "web": "https://twitter.com/johndoe"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Grace",
+      "avatar": "https://example.com/avatar/john.jpg",
+      "social": {
+        "linkedin": "https://www.linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe",
+        "github": "https://twitter.com/johndoe",
+        "youtube": "https://twitter.com/johndoe",
+        "web": "https://twitter.com/johndoe"
+      }
+    }
+  ]
+}
