@@ -41,7 +41,7 @@ const Footer = () => {
               to="https://github.com/Ginjak/Event-Bright"
               target="_blank"
             >
-              <GitHubIcon fontSize="large" className="link spacing" />
+              <GitHubIcon fontSize="large" className="link spacing m-right" />
             </NavLink>
           </div>
         </div>
@@ -50,7 +50,7 @@ const Footer = () => {
           <NavLink to="/about" className="link spacing">
             About
           </NavLink>
-          <NavLink to="/contact" className="link spacing">
+          <NavLink to="/contact" className="link spacing m-right">
             Contact
           </NavLink>
         </div>
