@@ -27,7 +27,7 @@ const Footer = () => {
         {/* social medias >> */}
         <div className="socials-container">
           <span className="fs-6 p-3 fw-bold">Future links</span>
-          <div className="socials-list p-3">
+          <div className="socials-list">
             <NavLink to="https://www.instagram.com/" target="_blank">
               <InstagramIcon fontSize="large" className="link spacing" />
             </NavLink>
