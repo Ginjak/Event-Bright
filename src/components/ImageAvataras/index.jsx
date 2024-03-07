@@ -6,6 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LanguageIcon from "@mui/icons-material/Language";
 import { NavLink } from "react-router-dom";
@@ -41,7 +42,7 @@ function ImageAvatars() {
               key={member.id}
               style={{
                 background: "#fffcfcc8",
-                minWidth: "300px",
+                minWidth: "322px",
               }}
               className="team-card"
             >
@@ -71,6 +72,14 @@ function ImageAvatars() {
                     {member.social.twitter && (
                       <NavLink to={member.social.twitter} target="_blank">
                         <XIcon
+                          fontSize="large"
+                          className="icons me-2 mail-link"
+                        />
+                      </NavLink>
+                    )}
+                    {member.social.instagram && (
+                      <NavLink to={member.social.instagram} target="_blank">
+                        <InstagramIcon
                           fontSize="large"
                           className="icons me-2 mail-link"
                         />
